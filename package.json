@@ -19,6 +19,7 @@
   "dependencies": {
     "hydna": "^2.0.3",
     "johnny-five": "^0.9.26",
-    "jquery": "^2.2.1"
+    "jquery": "^2.2.1",
+    "raspi-io": "^5.3.0"
   }
 }
