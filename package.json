@@ -1,18 +1,24 @@
 {
   "name": "meep",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "beep beep",
+  "main": "hydna.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uxl/meep-robot.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uxl/meep-robot/issues"
+  },
+  "homepage": "https://github.com/uxl/meep-robot#readme",
   "dependencies": {
     "hydna": "^2.0.3",
-    "johnny-five": "^0.9.17",
-    "jquery": "^2.2.1",
-    "pusher": "^1.1.0",
-    "raspi-io": "^5.2.0"
+    "johnny-five": "^0.9.26",
+    "jquery": "^2.2.1"
   }
 }
