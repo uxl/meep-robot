@@ -45,17 +45,17 @@ channel.on('data', function(cmdObj) {
   //determine device
     try {
       var cmd = JSON.parse(cmdObj);
+
+      if(cmd.hasOwnProperty('led')){
+        console.log('woot');
+        ledController(cmd['led']);
+      }
+      if(cmd.hasOwnProperty('dial')){
+        console.log('woot');
+        dialController(cmd['dial']);
+      }
     } catch (e) {
       console.log(e);
-    }
-
-    if(cmd.hasOwnProperty("led")){
-      console.log('woot');
-      ledController(cmd['led']);
-    }
-    if(cmd.hasOwnProperty("dial")){
-      console.log('woot');
-      dialController(cmd['dial']);
     }
 });
 
