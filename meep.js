@@ -38,6 +38,7 @@ channel.on('connect', function() {
 channel.on('error', function(e) {
   // an error occured when connecting
   console.log('error: ' + e)
+  console.log('error: ' + e.type)
 
 });
 channel.on('data', function(cmdObj) {
