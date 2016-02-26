@@ -21,19 +21,23 @@ channel.on('error', function(e) {
   console.log('error: ' + e)
 
 });
-channel.on('data', function(data) {
-  console.log('Channel "%s" recieved: %s', this.url, data);
+channel.on('data', function(cmdObj) {
+  console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  console.log('data', data)
-  for ( property in data ) {
+  console.log('cmdObj', cmdObj);
+  console.log('cmdObj.property', cmdObj[0]);
+  if(cmdObj[0]){
+    console.log('woot');
+  }
+  for ( property in cmdObj ) {
     switch (property) {
       case "led":
         console.log('led action');
-        ledController(data[property]);
+        ledController(cmdObj[property]);
         break;
         case "dial":
         console.log('dial action');
-          dialController(data[property]);
+          dialController(cmdObj[property]);
           break;
       default:
     }
