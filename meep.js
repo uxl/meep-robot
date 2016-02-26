@@ -10,7 +10,7 @@ var board = new five.Board({
 });
 
 var connectHy = function(){
-  channel =  = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
+  channel = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
 };
 var parseCmd = function(cmd) {
   console.log('cmd', cmd);
