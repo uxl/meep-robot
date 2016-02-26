@@ -26,23 +26,31 @@ channel.on('data', function(cmdObj) {
   //determine device
   console.log('cmdObj', cmdObj);
 
-  for ( property in cmdObj ) {
-    console.log('property', property);
-    switch (property) {
-      case "led":
-        console.log('led action');
-        ledController(cmdObj[property]);
-        break;
-        case "dial":
-        console.log('dial action');
-          dialController(cmdObj[property]);
-          break;
-      default:
-    }
+  if('led' in cmdObj){
+    parseCmd(cmdObj);
+  }
+  if('dial' in cmdObj){
+    parseCmd(cmdObj);
   }
 
 });
 
+var parseCmd = function(cmd){
+  for ( property in cmd ) {
+    console.log('property', property);
+    switch (property) {
+      case "led":
+        console.log('led action');
+        ledController(cmd[property]);
+        break;
+        case "dial":
+        console.log('dial action');
+          dialController(cmd[property]);
+          break;
+      default:
+    }
+  }
+}
 board.on("ready", function() {
       led = new five.Led("P1-13");
 });
