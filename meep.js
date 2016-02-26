@@ -11,7 +11,7 @@ var board = new five.Board({
 channel.on('connect', function() {
   // read/write connection is ready to use
   console.log('connected!!');
-  var message = 'server connected';
+  var message = 'meep connected';
   channel.write(message);
 });
 
