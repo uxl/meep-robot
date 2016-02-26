@@ -45,10 +45,10 @@ channel.on('data', function(cmdObj) {
   //determine device
   JSON.parse(cmdObj, function(k,v){
     if(k = 'led'){
-      parseCmd(payload);
+      console.log('led: ' + v);
     }
     if(k = 'dial'){
-      parseCmd(payload);
+      console.log('dial: ' + v);
     }
   });
 });
