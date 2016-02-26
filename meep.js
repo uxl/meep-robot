@@ -43,7 +43,9 @@ channel.on('error', function(e) {
 channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  // JSON.parse(cmdObj, function(k, v) {
+  JSON.parse(cmdObj, function(k, v) {
+    console.log(k + ' | ' + v);
+  };
   //   if (k = 'led') {
   //     console.log('led: ' + v);
   //   }
