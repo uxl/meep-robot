@@ -29,6 +29,7 @@ channel.on('data', function(data) {
 
 board.on("ready", function() {
       var led = new five.Led("P1-13");
+      led.blink(1);
 });
 /*
 var five = require("johnny-five");
