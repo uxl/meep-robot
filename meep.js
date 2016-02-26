@@ -26,7 +26,6 @@ channel.on('data', function(data) {
   //determine device
 
   for ( property in data ) {
-    console.log( property ); // Outputs: foo, fiz or fiz, foo
     switch (property) {
       case "led":
         ledController(data[property]);
