@@ -43,15 +43,13 @@ channel.on('error', function(e) {
 channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  var cmd = JSON.parse(cmdObj);
-  console.log(cmd, cmd);
-  //   if (k = 'led') {
-  //     console.log('led: ' + v);
-  //   }
-  //   if (k = 'dial') {
-  //     console.log('dial: ' + v);
-  //   }
-  // });
+  try {
+    var cmd = JSON.parse(cmdObj);
+  } catch (e) {
+    console.log(e);
+    //offline();
+  }
+  console.log(cmd);
 });
 
 board.on("ready", function() {
