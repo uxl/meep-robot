@@ -24,7 +24,7 @@ channel.on('error', function(e) {
 channel.on('data', function(data) {
   console.log('Channel "%s" recieved: %s', this.url, data);
   //determine device
-
+  console.log('data', data)
   for ( property in data ) {
     switch (property) {
       case "led":
@@ -33,7 +33,6 @@ channel.on('data', function(data) {
         break;
         case "dial":
         console.log('dial action');
-
           dialController(data[property]);
           break;
       default:
