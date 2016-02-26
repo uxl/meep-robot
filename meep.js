@@ -48,9 +48,14 @@ channel.on('data', function(cmdObj) {
     } catch (e) {
       console.log(e);
     }
-    if(cmd hasOwnProperty("led")){
+
+    if(cmd.hasOwnProperty("led")){
       console.log('woot');
       ledController(cmd['led']);
+    }
+    if(cmd.hasOwnProperty("dial")){
+      console.log('woot');
+      dialController(cmd['dial']);
     }
 });
 
