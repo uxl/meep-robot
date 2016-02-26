@@ -41,17 +41,15 @@ channel.on('error', function(e) {
 
 });
 channel.on('data', function(cmdObj) {
-  console.log('Channel "%s" recieved: %s', this.url, cmdObj);
+  // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
     try {
       var cmd = JSON.parse(cmdObj);
-
+      console.log(cmd);
       if(cmd.hasOwnProperty('led')){
-        console.log('woot');
         ledController(cmd['led']);
       }
       if(cmd.hasOwnProperty('dial')){
-        console.log('woot');
         dialController(cmd['dial']);
       }
     } catch (e) {
@@ -63,7 +61,6 @@ board.on("ready", function() {
   led = new five.Led("P1-13");
 });
 var ledController = function(state) {
-  console.log(state);
   switch (state) {
     case false:
       led.off();
