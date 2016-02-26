@@ -2,13 +2,16 @@ var five = require("johnny-five");
 var Raspi = require("raspi-io");
 
 var hydna = require('hydna');
-var channel = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
+var channel = null;
 var led = null;
 
 var board = new five.Board({
   io: new Raspi()
 });
 
+var connectHy = function(){
+  channel =  = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
+};
 var parseCmd = function(cmd) {
   console.log('cmd', cmd);
 
@@ -38,8 +41,7 @@ channel.on('connect', function() {
 channel.on('error', function(e) {
   // an error occured when connecting
   console.log('error: ' + e)
-  console.log('error: ' + e.type)
-
+  connectHy();
 });
 channel.on('data', function(cmdObj) {
   // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
@@ -74,3 +76,5 @@ var ledController = function(state) {
 var dialController = function(val) {
   console.log('dial value: ' + val)
 }
+//connect
+connectHy();
