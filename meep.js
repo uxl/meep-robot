@@ -11,6 +11,34 @@ var board = new five.Board({
 
 var connectHy = function(){
   channel = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
+  channel.on('connect', function() {
+    // read/write connection is ready to use
+    console.log('connected!!');
+    var message = 'meep robot connected';
+    channel.write(message);
+  });
+
+  channel.on('error', function(e) {
+    // an error occured when connecting
+    console.log('error: ' + e)
+    connectHy();
+  });
+  channel.on('data', function(cmdObj) {
+    // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
+    //determine device
+      try {
+        var cmd = JSON.parse(cmdObj);
+        console.log(cmd);
+        if(cmd.hasOwnProperty('led')){
+          ledController(cmd['led']);
+        }
+        if(cmd.hasOwnProperty('dial')){
+          dialController(cmd['dial']);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+  });
 };
 var parseCmd = function(cmd) {
   console.log('cmd', cmd);
@@ -30,35 +58,6 @@ var parseCmd = function(cmd) {
     }
   }
 };
-
-channel.on('connect', function() {
-  // read/write connection is ready to use
-  console.log('connected!!');
-  var message = 'meep robot connected';
-  channel.write(message);
-});
-
-channel.on('error', function(e) {
-  // an error occured when connecting
-  console.log('error: ' + e)
-  connectHy();
-});
-channel.on('data', function(cmdObj) {
-  // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
-  //determine device
-    try {
-      var cmd = JSON.parse(cmdObj);
-      console.log(cmd);
-      if(cmd.hasOwnProperty('led')){
-        ledController(cmd['led']);
-      }
-      if(cmd.hasOwnProperty('dial')){
-        dialController(cmd['dial']);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-});
 
 board.on("ready", function() {
   led = new five.Led("P1-13");
