@@ -36,6 +36,8 @@ channel.on('data', function(cmdObj) {
 });
 
 var parseCmd = function(cmd){
+  console.log('cmd', cmd);
+
   for ( property in cmd ) {
     console.log('property', property);
     switch (property) {
