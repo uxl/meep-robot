@@ -28,9 +28,12 @@ channel.on('data', function(data) {
   for ( property in data ) {
     switch (property) {
       case "led":
+        console.log('led action');
         ledController(data[property]);
         break;
         case "dial":
+        console.log('dial action');
+
           dialController(data[property]);
           break;
       default:
