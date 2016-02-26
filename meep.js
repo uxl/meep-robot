@@ -6,23 +6,23 @@ var channel = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
 var led = null;
 
 var board = new five.Board({
-      io: new Raspi()
+  io: new Raspi()
 });
 
-var parseCmd = function(cmd){
+var parseCmd = function(cmd) {
   console.log('cmd', cmd);
 
-  for ( property in cmd ) {
+  for (property in cmd) {
     console.log('property', property);
     switch (property) {
       case "led":
         console.log('led action');
         ledController(cmd[property]);
         break;
-        case "dial":
+      case "dial":
         console.log('dial action');
-          dialController(cmd[property]);
-          break;
+        dialController(cmd[property]);
+        break;
       default:
     }
   }
@@ -31,7 +31,7 @@ var parseCmd = function(cmd){
 channel.on('connect', function() {
   // read/write connection is ready to use
   console.log('connected!!');
-  var message = 'meep-robot connected';
+  var message = 'meep robot connected';
   channel.write(message);
 });
 
@@ -43,30 +43,30 @@ channel.on('error', function(e) {
 channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  JSON.parse(cmdObj, function(k,v){
-    if(k = 'led'){
-      console.log('led: ' + v);
-    }
-    if(k = 'dial'){
-      console.log('dial: ' + v);
-    }
-  });
+  // JSON.parse(cmdObj, function(k, v) {
+  //   if (k = 'led') {
+  //     console.log('led: ' + v);
+  //   }
+  //   if (k = 'dial') {
+  //     console.log('dial: ' + v);
+  //   }
+  // });
 });
 
 board.on("ready", function() {
-      led = new five.Led("P1-13");
+  led = new five.Led("P1-13");
 });
-var ledController = function(state){
+var ledController = function(state) {
   console.log(state);
-  switch(state){
+  switch (state) {
     case false:
       led.off();
-    break;
+      break;
     case true:
       led.on();
-    break;
+      break;
   }
 }
-var dialController = function(val){
+var dialController = function(val) {
   console.log('dial value: ' + val)
 }
