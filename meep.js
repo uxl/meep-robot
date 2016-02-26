@@ -15,9 +15,9 @@ channel.on('connect', function() {
   channel.write(message);
 });
 
-channel.on('error', function() {
+channel.on('error', function(e) {
   // an error occured when connecting
-  console.log('error!!')
+  console.log('error: ' + e)
 
 });
 channel.on('data', function(data) {
