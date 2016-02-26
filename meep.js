@@ -56,18 +56,3 @@ var ledController = function(state){
 var dialController = function(val){
   console.log('dial value: ' + val)
 }
-/*
-var five = require("johnny-five");
-var Raspi = require("raspi-io");
-
-var PusherClient = require('./lib/pusher-node-client').PusherClient;
-
-var board = new five.Board({
-      io: new Raspi()
-});
-
-board.on("ready", function() {
-      var led = new five.Led("P1-13");
-        //led.blink();
-});
-*/
