@@ -25,11 +25,9 @@ channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
   console.log('cmdObj', cmdObj);
-  console.log('cmdObj.property', cmdObj[0]);
-  if(cmdObj[0]){
-    console.log('woot');
-  }
+
   for ( property in cmdObj ) {
+    console.log('property', property);
     switch (property) {
       case "led":
         console.log('led action');
