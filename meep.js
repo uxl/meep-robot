@@ -43,6 +43,7 @@ board.on("ready", function() {
       led = new five.Led("P1-13");
 });
 var ledController = function(state){
+  console.log(state);
   switch(state){
     case false:
       led.off();
