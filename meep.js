@@ -31,7 +31,7 @@ var parseCmd = function(cmd){
 channel.on('connect', function() {
   // read/write connection is ready to use
   console.log('connected!!');
-  var message = 'meep connected';
+  var message = 'meep-robot connected';
   channel.write(message);
 });
 
@@ -43,13 +43,13 @@ channel.on('error', function(e) {
 channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  console.log('cmdObj', cmdObj);
+  var payload = JSON.parse(cmdObj);
 
-  if(cmdObj.hasOwnProperty('led')){
-    parseCmd(cmdObj);
+  if(payload.hasOwnProperty('led')){
+    parseCmd(payload);
   }
-  if(cmdObj.hasOwnProperty('dial')){
-    parseCmd(cmdObj);
+  if(payload.hasOwnProperty('dial')){
+    parseCmd(payload);
   }
 
 });
