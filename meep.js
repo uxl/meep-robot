@@ -43,15 +43,14 @@ channel.on('error', function(e) {
 channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  var payload = JSON.parse(cmdObj);
-
-  if(payload.hasOwnProperty('led')){
-    parseCmd(payload);
-  }
-  if(payload.hasOwnProperty('dial')){
-    parseCmd(payload);
-  }
-
+  JSON.parse(cmdObj, function(k,v){
+    if(k = 'led'){
+      parseCmd(payload);
+    }
+    if(k = 'dial'){
+      parseCmd(payload);
+    }
+  });
 });
 
 board.on("ready", function() {
