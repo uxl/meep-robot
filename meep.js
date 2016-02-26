@@ -43,13 +43,15 @@ channel.on('error', function(e) {
 channel.on('data', function(cmdObj) {
   console.log('Channel "%s" recieved: %s', this.url, cmdObj);
   //determine device
-  try {
-    var cmd = JSON.parse(cmdObj);
-  } catch (e) {
-    console.log(e);
-    //offline();
-  }
-  console.log(cmd);
+    try {
+      var cmd = JSON.parse(cmdObj);
+    } catch (e) {
+      console.log(e);
+    }
+    if(cmd hasOwnProperty("led")){
+      console.log('woot');
+      ledController(cmd['led']);
+    }
 });
 
 board.on("ready", function() {
