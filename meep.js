@@ -26,10 +26,10 @@ channel.on('data', function(cmdObj) {
   //determine device
   console.log('cmdObj', cmdObj);
 
-  if('led' in cmdObj){
+  if(cmdObj.hasOwnProperty('led')){
     parseCmd(cmdObj);
   }
-  if('dial' in cmdObj){
+  if(cmdObj.hasOwnProperty('dial')){
     parseCmd(cmdObj);
   }
 
