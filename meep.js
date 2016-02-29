@@ -14,8 +14,6 @@ var connectHy = function(){
   channel.on('connect', function() {
     // read/write connection is ready to use
     console.log('connected!!');
-    var message = 'meep robot connected';
-    this.write(message);
   });
 
   channel.on('error', function(err) {
