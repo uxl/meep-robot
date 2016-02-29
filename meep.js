@@ -4,6 +4,7 @@ var Raspi = require("raspi-io");
 var hydna = require('hydna');
 var channel = null;
 var led = null;
+var starttime = null;
 
 var board = new five.Board({
   io: new Raspi()
@@ -12,6 +13,7 @@ var board = new five.Board({
 var connectHy = function(){
   channel = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
   channel.on('connect', function() {
+    console.log(new Date().getTime() - startTime);
     // read/write connection is ready to use
     console.log('connected!!');
     var message = 'meep robot connected';
@@ -26,6 +28,8 @@ var connectHy = function(){
   channel.on('close', function(err){
     console.log('connection lost: ' + err);
     console.log('reconnect attempt on close');
+    startTime = new Date().getTime();
+
     return setTimeout(connectHy, 3000);
   });
   channel.on('data', function(cmdObj) {
