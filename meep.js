@@ -26,8 +26,9 @@ var connectHy = function(){
   });
   channel.on('close', function(err){
     console.log('connection lost: ' + err);
-    console.log('reconnect attempt close');
-    connectHy();
+    console.log('reconnect attempt on close');
+    channel = null;
+    return setTimeout(connectHy, 3000);
   });
   channel.on('data', function(cmdObj) {
     // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
