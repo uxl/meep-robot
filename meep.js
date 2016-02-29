@@ -39,6 +39,7 @@ var MEEP = (function($) {
         }
         // read/write connection is ready to use
         console.log('connected!!');
+        debugger;
         this.write('bot connected');
       });
 
