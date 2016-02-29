@@ -93,6 +93,7 @@ var MEEP = (function($) {
       }
     },
     sendMeep = function(msg) {
+      console.log('sendMeep', msg)
       var data = JSON.stringify(msg);
       try {
         channel.send(data);
