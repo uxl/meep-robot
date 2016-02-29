@@ -18,9 +18,15 @@ var connectHy = function(){
     channel.write(message);
   });
 
-  channel.on('error', function(e) {
+  channel.on('error', function(err) {
     // an error occured when connecting
-    console.log('error: ' + e)
+    console.log('error: ' + err);
+    console.log('reconnect attempt on error');
+    connectHy();
+  });
+  channel.on('close', function(err){
+    console.log('connection lost: ' + err);
+    console.log('reconnect attempt close');
     connectHy();
   });
   channel.on('data', function(cmdObj) {
