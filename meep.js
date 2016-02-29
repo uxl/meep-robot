@@ -34,10 +34,12 @@ var MEEP = (function($) {
       //add events
       channel.on('connect', function() {
         if (reconnect) {
-          console.log(new Date().getTime() - startTime/1000 + ' seconds');
+          console.log(new Date().getTime() - startTime / 1000 + ' seconds');
           reconnect = false;
         };
-        this.write('bot connected');
+        sendMeep({
+          "status": "bot connected"
+        });
 
         // read/write connection is ready to use
         console.log('connected');
@@ -88,6 +90,15 @@ var MEEP = (function($) {
             break;
           default:
         }
+      }
+    },
+    sendMeep = function(msg) {
+      var data = JSON.stringify(msg);
+      try {
+        channel.send(data);
+      } catch (e) {
+        console.log(e);
+        //offline();
       }
     },
     ledController = function(state) {
