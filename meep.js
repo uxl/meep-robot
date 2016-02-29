@@ -14,6 +14,7 @@ var MEEP = (function($) {
     led = null,
     starttime = null,
     board = null,
+    reconnect = false;
 
     init = function() {
       console.log(MEEP.init);
@@ -31,9 +32,9 @@ var MEEP = (function($) {
 
       //add events
       channel.on('connect', function() {
-        if (!connected) {
+        if (reconnect) {
           console.log(new Date().getTime() - startTime);
-          connected = true;
+          reconnect = false;
         }
         // read/write connection is ready to use
         console.log('connected!!');
@@ -50,7 +51,7 @@ var MEEP = (function($) {
         console.log('connection lost: ' + err);
         console.log('reconnect attempt on close');
         startTime = new Date().getTime();
-
+        reconnect = true;
         return setTimeout(connect, 3000);
       });
       channel.on('data', function(cmdObj) {
@@ -106,3 +107,5 @@ var MEEP = (function($) {
     init: init
   };
 }());
+
+MEEP.init();
