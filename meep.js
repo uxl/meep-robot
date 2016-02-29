@@ -22,12 +22,10 @@ var connectHy = function(){
     // an error occured when connecting
     console.log('error: ' + err);
     console.log('reconnect attempt on error');
-    connectHy();
   });
   channel.on('close', function(err){
     console.log('connection lost: ' + err);
     console.log('reconnect attempt on close');
-    channel = null;
     return setTimeout(connectHy, 3000);
   });
   channel.on('data', function(cmdObj) {
