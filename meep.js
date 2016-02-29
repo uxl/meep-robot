@@ -15,6 +15,7 @@ var MEEP = (function($) {
     starttime = null,
     board = null,
     reconnect = false,
+    startTime = null, // time reconnect
 
     init = function() {
       console.log(MEEP.init);
