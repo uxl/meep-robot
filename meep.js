@@ -39,8 +39,7 @@ var MEEP = (function($) {
         }
         // read/write connection is ready to use
         console.log('connected!!');
-        var message = 'meep robot connected';
-        this.write(message);
+        this.write("meep bot connected");
       });
 
       channel.on('error', function(err) {
