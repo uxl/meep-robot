@@ -93,16 +93,11 @@ var MEEP = (function($) {
       }
     },
     sendMeep = function(msg) {
-      console.log('sendMeep', msg)
       var data = JSON.stringify(msg);
-      console.log('1');
       try {
-        console.log('2');
-        channel.send(data);
-
+        channel.write(data);
       } catch (e) {
         console.log(e);
-        //offline();
       }
     },
     ledController = function(state) {
