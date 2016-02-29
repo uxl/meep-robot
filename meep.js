@@ -14,7 +14,7 @@ var MEEP = (function($) {
     led = null,
     starttime = null,
     board = null,
-    reconnect = false;
+    reconnect = false,
 
     init = function() {
       console.log(MEEP.init);
