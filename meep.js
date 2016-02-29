@@ -29,7 +29,7 @@ var MEEP = (function($) {
       connect();
     },
     connect = function() {
-      channel = hydna.createChannel('http://ulx.hydna.net/test', 'rw');
+      channel = hydna.createChannel('http://ulx.hydna.net/test', 'readwrite');
 
       //add events
       channel.on('connect', function() {
