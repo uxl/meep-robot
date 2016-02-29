@@ -34,13 +34,13 @@ var MEEP = (function($) {
       //add events
       channel.on('connect', function() {
         if (reconnect) {
-          console.log(new Date().getTime() - startTime);
+          console.log(new Date().getTime() - startTime/1000 + ' seconds');
           reconnect = false;
-        }
-        // read/write connection is ready to use
-        console.log('connected!!');
-        debugger;
+        };
         this.write('bot connected');
+
+        // read/write connection is ready to use
+        console.log('connected');
       });
 
       channel.on('error', function(err) {
@@ -50,8 +50,8 @@ var MEEP = (function($) {
       });
       channel.on('close', function(err) {
         console.log('connection lost: ' + err);
-        console.log('reconnect attempt on close');
         startTime = new Date().getTime();
+        console.log('reconnect attempt on close: ' + startTime);
         reconnect = true;
         return setTimeout(connect, 3000);
       });
