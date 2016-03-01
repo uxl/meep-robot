@@ -28,58 +28,6 @@ var MEEP = (function($) {
       })
       connect();
     },
-    connect = function() {
-      channel = hydna.createChannel('http://ulx.hydna.net/test', 'readwrite');
-
-      //add events
-      channel.on('connect', function() {
-        if (reconnect) {
-          console.log(Date.now() - startTime / 1000 + ' seconds');
-          reconnect = false;
-        };
-        sendMeep({
-          "status": "bot connected"
-        });
-
-        // read/write connection is ready to use
-        console.log('meepbot - onconnect');
-      });
-      channel.on('error', function(err) {
-        // an error occured when connecting
-        console.log('error: ' + err);
-        console.log('reconnect attempt on error');
-      });
-      channel.on('close', function(err) {
-        console.log('connection lost: ' + err);
-        startTime = Date.now();
-        console.log('reconnect attempt on close: ' + startTime);
-        reconnect = true;
-        return setTimeout(connect, 3000);
-      });
-      channel.on('data', function(cmdObj) {
-        // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
-        //determine device
-        try {
-          var cmd = JSON.parse(cmdObj);
-          //console.log(cmd + ' ' + formatAMPM(Date.now()));
-          if (cmd.hasOwnProperty('status')) {
-            if (cmd['status'] == "client-online") {
-              sendMeep({
-                "status": "hi"
-              });
-            }
-          }
-          if (cmd.hasOwnProperty('led')) {
-            ledController(cmd['led']);
-          }
-          if (cmd.hasOwnProperty('dial')) {
-            dialController(cmd['dial']);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      });
-    },
     parseCmd = function(cmd) {
       console.log('cmd', cmd);
 
@@ -132,6 +80,59 @@ var MEEP = (function($) {
       minutes = minutes < 10 ? '0' + minutes : minutes;
       var strTime = hours + ':' + minutes + ' ' + ampm;
       return strTime;
+    },
+    connect = function() {
+      channel = hydna.createChannel('http://ulx.hydna.net/test', 'readwrite');
+
+      //add events
+      channel.on('connect', function() {
+        if (reconnect) {
+          console.log(Date.now() - startTime / 1000 + ' seconds');
+          reconnect = false;
+        };
+        sendMeep({
+          "status": "bot connected"
+        });
+
+        // read/write connection is ready to use
+        console.log('meepbot - onconnect');
+      });
+      channel.on('error', function(err) {
+        // an error occured when connecting
+        console.log('error: ' + err);
+        console.log('reconnect attempt on error');
+      });
+      channel.on('close', function(err) {
+        console.log('connection lost: ' + err);
+        startTime = Date.now();
+        console.log('reconnect attempt on close: ' + startTime);
+        reconnect = true;
+        return setTimeout(connect, 3000);
+      });
+      channel.on('data', function(cmdObj) {
+        // console.log('Channel "%s" recieved: %s', this.url, cmdObj);
+        //determine device
+        try {
+          var cmd = JSON.parse(cmdObj);
+          console.log(cmd);
+          console.log(formatAMPM(Date.now()));
+          if (cmd.hasOwnProperty('status')) {
+            if (cmd['status'] == "client-online") {
+              sendMeep({
+                "status": "hi"
+              });
+            }
+          }
+          if (cmd.hasOwnProperty('led')) {
+            ledController(cmd['led']);
+          }
+          if (cmd.hasOwnProperty('dial')) {
+            dialController(cmd['dial']);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      });
     };
   return {
     init: init
