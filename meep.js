@@ -61,7 +61,7 @@ var MEEP = (function($) {
         //determine device
         try {
           var cmd = JSON.parse(cmdObj);
-          console.log(cmd + ' ' + formatAMPM(Data.now()));
+          console.log(cmd + ' ' + formatAMPM(Date.now()));
           if (cmd.hasOwnProperty('status')) {
             if (cmd['status'] == "client-online") {
               sendMeep({
@@ -102,7 +102,7 @@ var MEEP = (function($) {
 
       var data = JSON.stringify(msg);
       console.log('sendMeep: ' + msg);
-      //console.log('sendMeep msg: ' + msg['data']);
+      console.log('sendMeep msg: ' + msg['data']);
 
       try {
         channel.write(data);
