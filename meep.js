@@ -37,9 +37,7 @@ var MEEP = (function($) {
           console.log(Date.now() - startTime / 1000 + ' seconds');
           reconnect = false;
         };
-        sendMeep({
-          "status": "bot connected"
-        });
+        sendMeep({"status": "bot connected"});
 
         // read/write connection is ready to use
         console.log('connected');
@@ -64,7 +62,7 @@ var MEEP = (function($) {
           console.log(cmd);
           if (cmd.hasOwnProperty('status')) {
             if(cmd['status'] == "client-online"){
-              sendMeep({"status":"hi"})
+              sendMeep({"status":"hi"});
             }
           }
           if (cmd.hasOwnProperty('led')) {
