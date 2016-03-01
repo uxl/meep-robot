@@ -99,9 +99,11 @@ var MEEP = (function($) {
       }
     },
     sendMeep = function(msg) {
-      console.log('sendMeep: ' + msg)
-      console.log('sendMeep msg: ' + msg['data'])
+
       var data = JSON.stringify(msg);
+      console.log('sendMeep: ' + msg);
+      console.log('sendMeep msg: ' + msg['data']);
+
       try {
         channel.write(data);
       } catch (e) {
