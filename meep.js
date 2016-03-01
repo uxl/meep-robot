@@ -63,7 +63,7 @@ var MEEP = (function($) {
           var cmd = JSON.parse(cmdObj);
           console.log(cmd);
           if (cmd.hasOwnProperty('status')) {
-            if(cmd['status'] == "client_online"){
+            if(cmd['status'] == "client-online"){
               sendMeep({"status":"hi"})
             }
           }
