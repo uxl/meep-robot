@@ -42,7 +42,7 @@ var MEEP = (function($) {
         });
 
         // read/write connection is ready to use
-        console.log('connected');
+        console.log('meepbot - onconnect');
       });
       channel.on('error', function(err) {
         // an error occured when connecting
@@ -102,7 +102,7 @@ var MEEP = (function($) {
 
       var data = JSON.stringify(msg);
       console.log('sendMeep: ' + msg);
-      console.log('sendMeep msg: ' + msg['data']);
+      // console.log('sendMeep msg: ' + msg['data']);
 
       try {
         channel.write(data);
