@@ -37,7 +37,9 @@ var MEEP = (function($) {
           console.log(Date.now() - startTime / 1000 + ' seconds');
           reconnect = false;
         };
-        sendMeep({"status": "bot connected"});
+        sendMeep({
+          "status": "bot connected"
+        });
 
         // read/write connection is ready to use
         console.log('connected');
@@ -59,10 +61,12 @@ var MEEP = (function($) {
         //determine device
         try {
           var cmd = JSON.parse(cmdObj);
-          console.log(cmd);
+          console.log(cmd + ' ' + formatAMPM(Data.now()););
           if (cmd.hasOwnProperty('status')) {
-            if(cmd['status'] == "client-online"){
-              sendMeep({"status":"hi"});
+            if (cmd['status'] == "client-online") {
+              sendMeep({
+                "status": "hi"
+              });
             }
           }
           if (cmd.hasOwnProperty('led')) {
@@ -95,6 +99,8 @@ var MEEP = (function($) {
       }
     },
     sendMeep = function(msg) {
+      console.log('sendMeep: ' + msg)
+      console.log('sendMeep msg: ' + msg['data'])
       var data = JSON.stringify(msg);
       try {
         channel.write(data);
@@ -114,6 +120,16 @@ var MEEP = (function($) {
     },
     dialController = function(val) {
       console.log('dial value: ' + val)
+    },
+    formatAMPM = function(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
     };
   return {
     init: init
