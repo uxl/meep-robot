@@ -115,7 +115,7 @@ var MEEP = (function($) {
         try {
           var cmd = JSON.parse(cmdObj);
           console.log(cmd);
-          console.log(formatAMPM(Date.now()));
+          console.log(formatAMPM(Date.now);
           if (cmd.hasOwnProperty('status')) {
             if (cmd['status'] == "client-online") {
               sendMeep({
