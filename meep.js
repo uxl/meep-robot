@@ -50,7 +50,7 @@ var MEEP = (function($) {
 
       var data = JSON.stringify(msg);
       console.log('sendMeep: ' + data);
-      // console.log('sendMeep msg: ' + msg['data']);
+      console.log('sendMeep msg: ' + msg['data']);
 
       try {
         channel.write(data);
