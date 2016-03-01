@@ -61,7 +61,7 @@ var MEEP = (function($) {
         //determine device
         try {
           var cmd = JSON.parse(cmdObj);
-          console.log(cmd + ' ' + formatAMPM(Data.now()););
+          console.log(cmd + ' ' + formatAMPM(Data.now()));
           if (cmd.hasOwnProperty('status')) {
             if (cmd['status'] == "client-online") {
               sendMeep({
