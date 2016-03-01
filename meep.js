@@ -71,15 +71,9 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val)
     },
-    formatAMPM = function(date) {
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      var strTime = hours + ':' + minutes + ' ' + ampm;
-      return strTime;
+    timestamp = function() {
+      var d = new Date().toString();
+      return d;
     },
     connect = function() {
       channel = hydna.createChannel('http://ulx.hydna.net/test', 'readwrite');
@@ -87,7 +81,8 @@ var MEEP = (function($) {
       //add events
       channel.on('connect', function() {
         if (reconnect) {
-          console.log(Date.now() - startTime / 1000 + ' seconds');
+          console.log(timestamp);
+          //may use parse to subtract times
           reconnect = false;
         };
         sendMeep({
@@ -104,7 +99,7 @@ var MEEP = (function($) {
       });
       channel.on('close', function(err) {
         console.log('connection lost: ' + err);
-        startTime = Date.now();
+        startTime = timestamp;
         console.log('reconnect attempt on close: ' + startTime);
         reconnect = true;
         return setTimeout(connect, 3000);
@@ -115,8 +110,8 @@ var MEEP = (function($) {
         try {
           var cmd = JSON.parse(cmdObj);
           console.log(cmd);
-          var time = Date.now();
-          console.log(time/1000);
+
+          console.log(timestamp);
           if (cmd.hasOwnProperty('status')) {
             if (cmd['status'] == "client-online") {
               sendMeep({
