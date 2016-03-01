@@ -34,7 +34,7 @@ var MEEP = (function($) {
       //add events
       channel.on('connect', function() {
         if (reconnect) {
-          console.log(new Date().getTime() - startTime / 1000 + ' seconds');
+          console.log(Date.now() - startTime / 1000 + ' seconds');
           reconnect = false;
         };
         sendMeep({
@@ -44,7 +44,6 @@ var MEEP = (function($) {
         // read/write connection is ready to use
         console.log('connected');
       });
-
       channel.on('error', function(err) {
         // an error occured when connecting
         console.log('error: ' + err);
@@ -52,7 +51,7 @@ var MEEP = (function($) {
       });
       channel.on('close', function(err) {
         console.log('connection lost: ' + err);
-        startTime = new Date().getTime();
+        startTime = Date.now();
         console.log('reconnect attempt on close: ' + startTime);
         reconnect = true;
         return setTimeout(connect, 3000);
@@ -63,6 +62,11 @@ var MEEP = (function($) {
         try {
           var cmd = JSON.parse(cmdObj);
           console.log(cmd);
+          if (cmd.hasOwnProperty('status')) {
+            if(cmd['status'] == "client_online"){
+              sendMeep({"status":"hi"})
+            }
+          }
           if (cmd.hasOwnProperty('led')) {
             ledController(cmd['led']);
           }
@@ -113,7 +117,6 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val)
     };
-  //connect
   return {
     init: init
   };
