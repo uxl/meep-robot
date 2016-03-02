@@ -87,7 +87,7 @@ var MEEP = (function($) {
           reconnect = false;
         };
         sendMeep({
-          "status": "bot-connected"
+          "status": "bot-syn"
         });
         // read/write connection is ready to use
       });
@@ -114,9 +114,9 @@ var MEEP = (function($) {
 
           console.log(timestamp());
           if (cmd.hasOwnProperty('status')) {
-            if (cmd['status'] == "client-online") {
+            if (cmd['status'] == "client-syn") {
               sendMeep({
-                "status": "hi"
+                "status": "bot-ack"
               });
             }
           }
