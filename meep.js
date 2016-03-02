@@ -69,7 +69,7 @@ var MEEP = (function($) {
       }
     },
     dialController = function(val) {
-      console.log('dial value: ' + val)
+      console.log('dial value: ' + val);
     },
     timestamp = function() {
       var d = new Date().toString();
@@ -82,6 +82,7 @@ var MEEP = (function($) {
       channel.on('connect', function() {
         if (reconnect) {
           console.log(timestamp());
+          console.log('-------------');
           //may use parse to subtract times
           reconnect = false;
         };
@@ -100,7 +101,9 @@ var MEEP = (function($) {
       channel.on('close', function(err) {
         console.log('connection lost: ' + err);
         startTime = timestamp();
-        console.log('reconnect attempt on close: ' + startTime);
+        console.log('-------------');
+        console.log('reconnect..');
+        console.log(startTime);
         reconnect = true;
         return setTimeout(connect, 3000);
       });
