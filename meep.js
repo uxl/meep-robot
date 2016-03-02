@@ -87,11 +87,9 @@ var MEEP = (function($) {
           reconnect = false;
         };
         sendMeep({
-          "status": "bot connected"
+          "status": "bot-connected"
         });
-
         // read/write connection is ready to use
-        console.log('meepbot - onconnect');
       });
       channel.on('error', function(err) {
         // an error occured when connecting
