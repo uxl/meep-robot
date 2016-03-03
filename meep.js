@@ -11,7 +11,8 @@ var hydna = require('hydna');
 var MEEP = (function($) {
   //vars
   var channel = null,
-    led = null,
+    ledR = null,
+    ledG = null,
     starttime = null,
     board = null,
     reconnect = false,
@@ -93,7 +94,7 @@ var MEEP = (function($) {
       channel.on('connect', function() {
         //turn on green led
         statusController(true);
-        
+
         if (reconnect) {
           console.log(timestamp());
           console.log('-------------');
