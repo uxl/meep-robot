@@ -24,7 +24,8 @@ var MEEP = (function($) {
       });
       //events
       board.on("ready", function() {
-        led = new five.Led("P1-13");
+        ledR = new five.Led("P1-13");
+        ledG = new five.Led("P1-15");
       })
       connect();
     },
@@ -58,13 +59,23 @@ var MEEP = (function($) {
         console.log(e);
       }
     },
+    statusController = function(state) {
+      switch (state) {
+        case false:
+          ledG.off();
+          break;
+        case true:
+          ledG.on();
+          break;
+      }
+    },
     ledController = function(state) {
       switch (state) {
         case false:
-          led.off();
+          ledR.off();
           break;
         case true:
-          led.on();
+          ledR.on();
           break;
       }
     },
@@ -80,6 +91,9 @@ var MEEP = (function($) {
 
       //add events
       channel.on('connect', function() {
+        //turn on green led
+        statusController(true);
+        
         if (reconnect) {
           console.log(timestamp());
           console.log('-------------');
@@ -89,6 +103,7 @@ var MEEP = (function($) {
         sendMeep({
           "status": "bot-syn"
         });
+
         // read/write connection is ready to use
       });
       channel.on('error', function(err) {
@@ -97,6 +112,9 @@ var MEEP = (function($) {
         console.log('reconnect attempt on error');
       });
       channel.on('close', function(err) {
+        //turn on green led
+        statusController(false);
+
         console.log('connection lost: ' + err);
         startTime = timestamp();
         console.log('-------------');
