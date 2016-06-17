@@ -7,8 +7,7 @@
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
-var pixel = require("node-pixel");
-
+var pixel = require("/home/pi/app/meep-robot/node_modules/node-pixel/lib/pixel.js");
 var MEEP = (function($) {
   //vars
   var channel = null,
@@ -29,15 +28,16 @@ var MEEP = (function($) {
       board.on("ready", function() {
         ledR = new five.Led("P1-13");
         ledG = new five.Led("P1-15");
-        strip = new pixel.Strip({
+        pin = new pixel.Pin({
            board: this,
-          //  controller: "FIRMATA",
+           controller: "FIRMATA",
            strips: [ {pin: 18, length: 1}, ], // this is preferred form for definition
        });
        strip.on("ready", function() {
     // do stuff with the strip here.
-    setTimeout(function(){
-      strip.off();
+    setTimeout(
+         function(){
+           strip.off();
     },3000);
   });
       })

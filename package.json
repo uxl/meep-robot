@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/uxl/meep-robot#readme",
   "dependencies": {
+    "firmata": "^0.12.0",
     "hydna": "^2.0.3",
-    "johnny-five": "^0.9.26",
+    "johnny-five": "^0.9.56",
     "jquery": "^2.2.1",
     "node-pixel": "^0.6.1",
     "raspi-io": "^5.3.0"
