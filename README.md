@@ -42,10 +42,17 @@ copy this into the body of launch.sh:
 # restart meep
 sudo node /home/pi/app/meep-robot/meep.js
 
- exit 0 
+ exit 0
  ```
 
 set permissions:
 ```sh
 sudo chmod 755 /home/pi/.config/lxsession/LXDE-pi/launch.sh
+```
+
+
+startup?
+```
+touch /home/pi/app.js
+su pi -c 'node /home/pi/app.js < /dev/null &'
 ```

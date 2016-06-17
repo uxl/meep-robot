@@ -7,6 +7,7 @@
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
+var pixel = require("node-pixel");
 
 var MEEP = (function($) {
   //vars
@@ -17,6 +18,7 @@ var MEEP = (function($) {
     board = null,
     reconnect = false,
     startTime = null, // time reconnect
+    strip = null,
 
     init = function() {
       console.log(MEEP.init);
@@ -27,6 +29,17 @@ var MEEP = (function($) {
       board.on("ready", function() {
         ledR = new five.Led("P1-13");
         ledG = new five.Led("P1-15");
+        strip = new pixel.Strip({
+           board: this,
+          //  controller: "FIRMATA",
+           strips: [ {pin: 18, length: 1}, ], // this is preferred form for definition
+       });
+       strip.on("ready", function() {
+    // do stuff with the strip here.
+    setTimeout(function(){
+      strip.off();
+    },3000);
+  });
       })
       connect();
     },
