@@ -11,6 +11,7 @@
 
         strip.on("ready", function() {
             // do stuff with the strip here.
-            strip.on();
+            strip.color("#ff0000"); // turns entire strip red using a hex colour
+            strip.show(); 
         });
     });

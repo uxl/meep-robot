@@ -10,11 +10,7 @@ var pixel = require("node-pixel"),
             strips:[{pin:6, length: 2},],
         });
         strip.on("ready", function(){
-            setTimeout(function(){
-                strip.off();
-                setTimeout(function(){
-                 strip.on();
-                },3000);
-            },3000);       
+          strip.color("#ff0000"); // turns entire strip red using a hex colour
+          strip.show();      
         });
     });
