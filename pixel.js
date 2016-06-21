@@ -9,12 +9,12 @@ console.log("board ready");
     //led stobe
     var led = new five.Led(13);
     led.strobe();
-    
-    
+
+
     strip = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: 6, length: 4}, ], // this is preferred form for definition
+        strips: [ {pin: 6, length: 4},{pin: 5, length: 8},{pin: 3, length: 12} ], // this is preferred form for definition
         //color_order: pixel.COLOR_ORDER.GRB,
     });
 
