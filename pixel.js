@@ -3,6 +3,7 @@ var five = require("johnny-five");
 
 var board = new five.Board();
 var strip = null;
+var fps = 30;
 
 board.on("ready", function() {
 console.log("board ready");
@@ -36,50 +37,48 @@ console.log("board ready");
         console.log("Strip ready, let's go");
         dynamicRainbow(fps);
    });
-   strip.on("ready", function() {
+   function dynamicRainbow( delay ){
+       console.log( 'dynamicRainbow' );
 
-    });
+       var showColor;
+       var cwi = 0; // colour wheel index (current position on colour wheel)
+       var foo = setInterval(function(){
+           if (++cwi > 255) {
+               cwi = 0;
+           }
 
-    function dynamicRainbow( delay ){
-        console.log( 'dynamicRainbow' );
+           for(var i = 0; i < strip.stripLength(); i++) {
+               showColor = colorWheel( ( cwi+i ) & 255 );
+               strip.pixel( i ).color( showColor );
+           }
+           strip.show();
+       }, 1000/delay);
+   }
 
-        var showColor;
-        var cwi = 0; // colour wheel index (current position on colour wheel)
-        var foo = setInterval(function(){
-            if (++cwi > 255) {
-                cwi = 0;
-            }
+   // Input a value 0 to 255 to get a color value.
+   // The colors are a transition r - g - b - back to r.
+   function colorWheel( WheelPos ){
+       var r,g,b;
+       WheelPos = 255 - WheelPos;
 
-            for(var i = 0; i < strip.stripLength(); i++) {
-                showColor = colorWheel( ( cwi+i ) & 255 );
-                strip.pixel( i ).color( showColor );
-            }
-            strip.show();
-        }, 1000/delay);
-    }
+       if ( WheelPos < 85 ) {
+           r = 255 - WheelPos * 3;
+           g = 0;
+           b = WheelPos * 3;
+       } else if (WheelPos < 170) {
+           WheelPos -= 85;
+           r = 0;
+           g = WheelPos * 3;
+           b = 255 - WheelPos * 3;
+       } else {
+           WheelPos -= 170;
+           r = WheelPos * 3;
+           g = 255 - WheelPos * 3;
+           b = 0;
+       }
+       // returns a string with the rgb value to be used as the parameter
+       return "rgb(" + r +"," + g + "," + b + ")";
+   }
 
-    // Input a value 0 to 255 to get a color value.
-    // The colors are a transition r - g - b - back to r.
-    function colorWheel( WheelPos ){
-        var r,g,b;
-        WheelPos = 255 - WheelPos;
 
-        if ( WheelPos < 85 ) {
-            r = 255 - WheelPos * 3;
-            g = 0;
-            b = WheelPos * 3;
-        } else if (WheelPos < 170) {
-            WheelPos -= 85;
-            r = 0;
-            g = WheelPos * 3;
-            b = 255 - WheelPos * 3;
-        } else {
-            WheelPos -= 170;
-            r = WheelPos * 3;
-            g = 255 - WheelPos * 3;
-            b = 0;
-        }
-        // returns a string with the rgb value to be used as the parameter
-        return "rgb(" + r +"," + g + "," + b + ")";
-    }
 });
