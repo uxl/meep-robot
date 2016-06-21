@@ -14,7 +14,7 @@ console.log("board ready");
     strip = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: 6, length: 4},{pin: 5, length: 8},{pin: 3, length: 12} ], // this is preferred form for definition
+        strips: [ {pin: 6, length: 4},{pin: 5, length: 8},{pin: 3, length: 12},{pin:10, length: 60}, ], // this is preferred form for definition
         //color_order: pixel.COLOR_ORDER.GRB,
     });
 
@@ -30,7 +30,7 @@ console.log("board ready");
         strip.show();
         console.log("set show");
         console.log(strip);
-         var p = strip.pixel(2);
+         var p = strips[0].strip.pixel(2);
          p.color("blue");
          strip.show();
    });
