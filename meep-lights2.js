@@ -82,11 +82,11 @@ var MEEP = (function($) {
     statusController = function(state) {
       switch (state) {
         case false:
-          dialController(dialVal);
+          //dialController(dialVal);
           //ledG.off();
           break;
         case true:
-          strip.color("green");
+          //strip.color("green");
           break;
       }
     },
