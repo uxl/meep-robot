@@ -100,7 +100,7 @@ var MEEP = (function($) {
       console.log('dial value: ' + val);
       // 1 - 100
 
-      var litnum = striplength * val/100;
+      var litnum = strip.stripLength() * val/100;
       for(var i = 0; i < strip.stripLength(); i++) {
           if(i < val){
             var showColor = "red";
