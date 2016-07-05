@@ -4,6 +4,7 @@
 
 'use strict';
 
+var pixel = require("node-pixel");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
@@ -27,10 +28,21 @@ var MEEP = (function($) {
       board.on("ready", function() {
         ledR = new five.Led("P1-8");
         ledG = new five.Led("P1-10");
+
+        strip = new pixel.Strip({
+            board: this,
+            controller: "FIRMATA",
+            strips: [   {pin: 6, length: 4},
+                        {pin: 5, length: 8},
+                        {pin: 3, length: 12},
+                        {pin:10, length: 60},
+                        ], // this is preferred form for definition
+            //color_order: pixel.COLOR_ORDER.GRB,
+        });
       });
       connect();
     },
-    parseCmd = funcssstion(cmd) {
+    parseCmd = function(cmd) {
       console.log('cmd', cmd);
 
       for (property in cmd) {

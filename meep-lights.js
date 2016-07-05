@@ -34,8 +34,8 @@ var MEEP = (function($) {
       });
       //events
       board.on("ready", function() {
-        ledR = new five.Led("P1-13");
-        ledG = new five.Led("P1-15");
+        ledR = new five.Led("P1-8");
+        ledG = new five.Led("P1-10");
         strip = new pixel.Strip({
             board: this,
             controller: "FIRMATA",
@@ -99,6 +99,7 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val);
       // 1 - 100
+
       var litnum = striplength * val/100;
       for(var i = 0; i < strip.stripLength(); i++) {
           if(i < val){
