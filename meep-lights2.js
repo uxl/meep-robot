@@ -39,13 +39,13 @@ var MEEP = (function($) {
               {pin: 6, length: 1},  // status
             ],
         });
-        // stripDial = new pixel.Strip({
-        //     board: this,
-        //     controller: "FIRMATA",
-        //     strips: [
-        //       {pin: 3, length: 12}, // dial
-        //     ],
-        // });
+        stripDial = new pixel.Strip({
+            board: this,
+            controller: "FIRMATA",
+            strips: [
+              {pin: 5, length: 12}, // dial
+            ],
+        });
         // stripBar = new pixel.Strip({
         //     board: this,
         //     controller: "FIRMATA",
