@@ -45,7 +45,7 @@ var MEEP = (function($) {
         strip.on("ready", function() {
           console.log("Strip ready, let's go");
           //parse strips
-          stripStatus.push(strip.pixel(1));
+          stripStatus.push(strip.pixel(0));
           for(var i=1;i<12;i++){
             stripDial.push(strip.pixel[i]);
             for(var i=12;i<8;i++){
@@ -123,16 +123,15 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val);
       dialVal = val; //save last value
-      var litnum = strip.stripLength() * val/100;
+      var litnum = stripDial.length * val/100;
       console.log("litnum: " + litnum);
 
-      for(var i = 0; i < strip.stripLength(); i++) {
+      for(var i = 0; i < stripDial.length; i++) {
           if(i < litnum){
-            var showColor = "red";
+            stripDial[i].color( "red" );
           }else{
-            var showColor = "blue";
+            stripDial[i].color( "blue" );
           }
-          strip.pixel( i ).color( showColor );
       }
       strip.show();
 
