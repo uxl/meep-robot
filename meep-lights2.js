@@ -35,9 +35,9 @@ var MEEP = (function($) {
             board: this,
             controller: "FIRMATA",
             strips: [
-              //{pin: 6, length: 4},
-              {pin: 5, length: 8},
-              //{pin: 3, length: 12},
+              {pin: 6, length: 1},  // status
+              {pin: 5, length: 8},  // bar
+              {pin: 3, length: 12}, // dial
               //{pin:10, length: 60},
             ],
             // this is preferred form for definition
@@ -45,9 +45,9 @@ var MEEP = (function($) {
         });
         strip.on("ready", function() {
           console.log("Strip ready, let's go");
+          connect();
         });
       });
-      connect();
     },
     parseCmd = function(cmd) {
       console.log('cmd', cmd);
@@ -82,11 +82,12 @@ var MEEP = (function($) {
     statusController = function(state) {
       switch (state) {
         case false:
-          //dialController(dialVal);
-          //ledG.off();
+          strip[0].color("red");
+          strip.show();
           break;
         case true:
-          //strip.color("green");
+          strip[0].color("green");
+          strip.show();
           break;
       }
     },
@@ -108,7 +109,7 @@ var MEEP = (function($) {
       var litnum = strip.stripLength() * val/100;
       console.log("litnum: " + litnum);
 
-      for(var i = 0; i < strip.stripLength(); i++) {
+      for(var i = 0; i < strip[2].stripLength(); i++) {
           if(i < litnum){
             var showColor = "red";
           }else{
