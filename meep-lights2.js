@@ -93,9 +93,10 @@ var MEEP = (function($) {
         console.log(e);
       }
     },
-    updateColor = function(thing, color){
+    updateColor = function(thing, col){
+      console.log("thing: " + thing)
       for(var i = 0; i < thing.length; i++) {
-          thing[i].color( color );
+          thing[i].color( col );
       }
       strip.show();
     },
