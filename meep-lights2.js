@@ -98,6 +98,7 @@ var MEEP = (function($) {
           break;
         case true:
           strip.color("yellow");
+          strip.show();
           break;
       }
     },
