@@ -86,7 +86,10 @@ var MEEP = (function($) {
           strip.show();
           break;
         case true:
-          strip.strips[0].color("green");
+        console.log(strip);
+
+        console.log(strip.strips);
+          strip.strips(0).color("green");
           strip.show();
           break;
       }
