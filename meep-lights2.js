@@ -12,8 +12,8 @@ var hydna = require('hydna');
 var MEEP = (function($) {
   //vars
   var channel = null,
-    ledR = null,
-    ledG = null,
+    //ledR = null,
+    //ledG = null,
     starttime = null,
     board = null,
     reconnect = false,
@@ -22,21 +22,23 @@ var MEEP = (function($) {
     init = function() {
       console.log(MEEP.init);
       board = new five.Board({
-        io: new Raspi()
+        //io: new Raspi()
       });
       //events
       board.on("ready", function() {
-        ledR = new five.Led("P1-8");
-        ledG = new five.Led("P1-10");
+        // ledR = new five.Led("P1-8");
+        // ledG = new five.Led("P1-10");
 
         strip = new pixel.Strip({
             board: this,
             controller: "FIRMATA",
-            strips: [   {pin: 6, length: 4},
-                        {pin: 5, length: 8},
-                        {pin: 3, length: 12},
-                        {pin:10, length: 60},
-                        ], // this is preferred form for definition
+            strips: [
+              //{pin: 6, length: 4},
+              {pin: 5, length: 8},
+              //{pin: 3, length: 12},
+              //{pin:10, length: 60},
+            ],
+            // this is preferred form for definition
             //color_order: pixel.COLOR_ORDER.GRB,
         });
       });
@@ -75,20 +77,20 @@ var MEEP = (function($) {
     statusController = function(state) {
       switch (state) {
         case false:
-          ledG.off();
+          //ledG.off();
           break;
         case true:
-          ledG.on();
+          //ledG.on();
           break;
       }
     },
     ledController = function(state) {
       switch (state) {
         case false:
-          ledR.off();
+          //ledR.off();
           break;
         case true:
-          ledR.on();
+          //ledR.on();
           break;
       }
     },
