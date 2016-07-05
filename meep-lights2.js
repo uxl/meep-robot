@@ -121,13 +121,14 @@ var MEEP = (function($) {
         case false:
           console.log("set status red");
           colors[status[0]] = "rgb(255,0,0)";
+          render();
           break;
         case true:
           console.log("set status green");
           colors[status[0]] = "rgb(0,255,0)";
+          render();
           break;
       }
-      render();
     },
     ledController = function(state) {
       switch (state) {
