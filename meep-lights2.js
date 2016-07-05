@@ -38,8 +38,8 @@ var MEEP = (function($) {
             controller: "FIRMATA",
             strips: [
               {pin: 6, length: 1},  // status
-              {pin: 5, length: 12}, // dial
-              {pin: 7, length: 8}, // bar
+              //{pin: 5, length: 12}, // dial
+              // {pin: 7, length: 8}, // bar
             ],
         });
         strip.on("ready", function() {
@@ -47,12 +47,12 @@ var MEEP = (function($) {
           //parse strips
           stripStatus.push(strip.pixel(1));
 
-          for(var i=1;i<13;i++){
-            stripDial.push(strip.pixel[i]);
-          }
-          for(var j=13;j<=21;j++){
-            stripBar.push(strip.pixel[j]);
-          }
+          // for(var i=1;i<13;i++){
+          //   stripDial.push(strip.pixel[i]);
+          // }
+          // for(var j=13;j<21;j++){
+          //   stripBar.push(strip.pixel[j]);
+          // }
           console.log("strip length: " + strip.stripLength());
           console.log("stripStatus length: " + stripStatus.length);
           console.log("stripDial length: " + stripDial.length);
