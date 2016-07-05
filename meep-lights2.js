@@ -55,8 +55,8 @@ var MEEP = (function($) {
           // }
           console.log("strip length: " + strip.stripLength());
           console.log("stripStatus length: " + stripStatus.length);
-          console.log("stripDial length: " + stripDial.length);
-          console.log("stripBar length: " + stripBar.length);
+          // console.log("stripDial length: " + stripDial.length);
+          // console.log("stripBar length: " + stripBar.length);
 
           connect();
         });
@@ -93,10 +93,10 @@ var MEEP = (function($) {
         console.log(e);
       }
     },
-    updateColor = function(thing, col){
-      console.log("thing: " + thing)
-      for(var i = 0; i < thing.length; i++) {
-          thing[i].color( col );
+    updateColor = function(arr, col){
+      console.log("arr: " + arr.length);
+      for(var i = 0; i < arr.length; i++) {
+          arr[i].color( col );
       }
       strip.show();
     },
