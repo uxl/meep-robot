@@ -39,16 +39,13 @@ var MEEP = (function($) {
         strip = new pixel.Strip({
             board: this,
             controller: "FIRMATA",
-            strips: [  {pin: 5, length: 8},
-                        ], // this is preferred form for definition
-            //color_order: pixel.COLOR_ORDER.GRB,
+            strips: [
+              {pin: 5, length: 8},
+            ],
         });
-       strip.on("ready", function() {
-    // do stuff with the strip here.
-
-      })
-      connect();
-    },
+    });
+    connect();
+  },
     parseCmd = function(cmd) {
       console.log('cmd', cmd);
 

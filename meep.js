@@ -7,7 +7,7 @@
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
-var pixel = require("/home/pi/app/meep-robot/node_modules/node-pixel/lib/pixel.js");
+
 var MEEP = (function($) {
   //vars
   var channel = null,
@@ -17,7 +17,6 @@ var MEEP = (function($) {
     board = null,
     reconnect = false,
     startTime = null, // time reconnect
-    strip = null,
 
     init = function() {
       console.log(MEEP.init);
@@ -28,6 +27,7 @@ var MEEP = (function($) {
       board.on("ready", function() {
         ledR = new five.Led("P1-13");
         ledG = new five.Led("P1-15");
+      });
       connect();
     },
     parseCmd = function(cmd) {
