@@ -114,18 +114,19 @@ var MEEP = (function($) {
       for (var i = 0; i < strip.stripLength(); i++) {
         strip.pixel(i).color(colors[i]);
       }
+      console.log('colors: ' + colors);
       strip.show();
     },
     updateStatus = function(state) {
       switch (state) {
         case false:
           console.log("set status red");
-          colors[status[0]] = "rgb(255,0,0)";
+          colors[0] = "rgb(255,0,0)";
           render();
           break;
         case true:
           console.log("set status green");
-          colors[status[0]] = "rgb(0,255,0)";
+          colors[0] = "rgb(0,255,0)";
           render();
           break;
       }
@@ -134,12 +135,12 @@ var MEEP = (function($) {
       switch (state) {
         case false:
           for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "rgb(0,0,255)";
+            colors[bar[i]] = "rgb(0,0,0)";
           }
           break;
         case true:
           for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "rgb(0,0,0)";
+            colors[bar[i]] = "rgb(0,0,255)";
           }
           break;
       }
