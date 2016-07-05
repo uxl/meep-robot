@@ -104,8 +104,8 @@ var MEEP = (function($) {
       var litnum = strip.stripLength() * val/100;
       console.log("litnum: " + litnum);
 
-      for(var i = 0; i < litnum; i++) {
-          if(i < val){
+      for(var i = 0; i < strip.stripLength(); i++) {
+          if(i < litnum){
             var showColor = "red";
           }else{
             var showColor = "white";
