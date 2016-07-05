@@ -37,8 +37,8 @@ var MEEP = (function($) {
             board: this,
             controller: "FIRMATA",
             strips: [
-              {pin: 6, length: 1},  // status
-              {pin: 5, length: 12}, // dial
+              {pin: 5, length: 1},  // status
+              {pin: 6, length: 12}, // dial
               {pin: 7, length: 8}, // bar
             ],
         });
