@@ -53,7 +53,7 @@ var MEEP = (function($) {
           for(var i=12;i<8;i++){
             stripBar.push(strip.pixel[i]);
           }
-          console.log("stripStaus length: " + stripStaus.length)
+          console.log("stripStatus length: " + stripStatus.length)
 
           console.log("stripBar length: " + stripBar.length)
 
