@@ -112,7 +112,7 @@ var MEEP = (function($) {
     },
     render = function() {
       console.log("render called")
-      for (var i = 0; i < strip.stripLength(); i++) {
+      for (var i = 0; i < strip.stripLength(); ++i) {
         strip.pixel(i).color(colors[i]);
       }
       console.log('colors: ' + colors);
