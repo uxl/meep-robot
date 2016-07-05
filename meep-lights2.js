@@ -19,6 +19,7 @@ var MEEP = (function($) {
     reconnect = false,
     startTime = null, // time reconnect
     strip = null,
+    dialVal = 0,
 
     init = function() {
       console.log(MEEP.init);
@@ -81,26 +82,28 @@ var MEEP = (function($) {
     statusController = function(state) {
       switch (state) {
         case false:
+          dialController(dialVal);
           //ledG.off();
           break;
         case true:
-          //ledG.on();
+          strip.color("green");
           break;
       }
     },
     ledController = function(state) {
       switch (state) {
         case false:
+          dialController(dialVal);
           //ledR.off();
           break;
         case true:
-          //ledR.on();
+          strip.color("yellow");
           break;
       }
     },
     dialController = function(val) {
       console.log('dial value: ' + val);
-
+      dialVal = val; //save last value
       var litnum = strip.stripLength() * val/100;
       console.log("litnum: " + litnum);
 
@@ -108,7 +111,7 @@ var MEEP = (function($) {
           if(i < litnum){
             var showColor = "red";
           }else{
-            var showColor = "white";
+            var showColor = "blue";
           }
           strip.pixel( i ).color( showColor );
       }
