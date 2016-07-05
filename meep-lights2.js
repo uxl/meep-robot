@@ -82,11 +82,11 @@ var MEEP = (function($) {
     statusController = function(state) {
       switch (state) {
         case false:
-          strip[0].color("red");
+          strip.strips[0].color("red");
           strip.show();
           break;
         case true:
-          strip[0].color("green");
+          strip.strips[0].color("green");
           strip.show();
           break;
       }
@@ -106,16 +106,16 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val);
       dialVal = val; //save last value
-      var litnum = strip.stripLength() * val/100;
+      var litnum = strip.strips[2].stripLength() * val/100;
       console.log("litnum: " + litnum);
 
-      for(var i = 0; i < strip[2].stripLength(); i++) {
+      for(var i = 0; i < strip.strips[2].stripLength(); i++) {
           if(i < litnum){
             var showColor = "red";
           }else{
             var showColor = "blue";
           }
-          strip.pixel( i ).color( showColor );
+          strip.strips[2].pixel( i ).color( showColor );
       }
       strip.show();
 
