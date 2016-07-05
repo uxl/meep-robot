@@ -18,9 +18,15 @@ var MEEP = (function($) {
     board = null,
     reconnect = false,
     startTime = null, // time reconnect
-    stripDial = [],
-    stripBar = [],
-    stripStatus = [],
+
+    stripArr = [status, dial, bar],
+
+    status = [0],
+    dial = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    bar = [13, 14, 15, 16, 17, 18, 19, 20, 21],
+
+    colors = [],
+
     strip = null,
     dialVal = 0,
 
@@ -29,34 +35,45 @@ var MEEP = (function($) {
       board = new five.Board({
         //io: new Raspi()
       });
+
       //events
       board.on("ready", function() {
         // ledR = new five.Led("P1-8");
         // ledG = new five.Led("P1-10");
         strip = new pixel.Strip({
-            board: this,
-            controller: "FIRMATA",
-            strips: [
-              {pin: 6, length: 1},  // status
-              {pin: 5, length: 12}, // dial
-              {pin: 7, length: 8}, // bar
-            ],
+          board: this,
+          controller: "FIRMATA",
+          strips: [{
+              pin: 6,
+              length: 1
+            }, // status
+            {
+              pin: 5,
+              length: 12
+            }, // dial
+            {
+              pin: 7,
+              length: 8
+            }, // bar
+          ],
         });
-        strip.on("ready", function() {
-          console.log("Strip ready, let's go");
-          //parse strips
-          stripStatus.push(strip.pixel(0));
 
-          for(var i=1;i<13;i++){
-            stripDial.push(strip.pixel(i));
+        strip.on("ready", function() {
+          console.log("strip ready");
+          //set led default color to black
+          for (var j = 0; j < 21; j++) {
+            colors[j] = "rgb(0, 0, 0)";
           }
-          for(var j=13;j<21;j++){
-            stripBar.push(strip.pixel(j));
-          }
-          console.log("strip length: " + strip.stripLength());
-          console.log("stripStatus length: " + stripStatus.length);
-          console.log("stripDial length: " + stripDial.length);
-          // console.log("stripBar length: " + stripBar.length);
+
+
+
+          // for(var i=1;i<13;i++){
+          //   colors[i] = "rgb(0, 0, 0)";
+          // }
+
+          // for(var j=13;j<21;j++){
+          //   colors[j] = "rgb(0, 0, 0)";
+          // }
 
           connect();
         });
@@ -75,7 +92,7 @@ var MEEP = (function($) {
             break;
           case "dial":
             console.log('dial action');
-            dialController(cmd[property]);
+            updateDial(cmd[property]);
             break;
           default:
         }
@@ -93,50 +110,54 @@ var MEEP = (function($) {
         console.log(e);
       }
     },
-    updateColor = function(arr, col){
-      console.log("arr: " + arr.length);
-      for(var i = 0; i < arr.length; i++) {
-          arr[i].color( col );
+    render = function() {
+      for (var i = 0; i < strip.stripLength(); i++) {
+        strip.pixel(i).color(colors[i]);
       }
       strip.show();
     },
-    statusController = function(state) {
+    updateStatus = function(state) {
       switch (state) {
         case false:
-        console.log("set status red");
-          updateColor(stripStatus, "red");
+          console.log("set status red");
+          colors[status[0]] = "rgb(255,0,0)";
           break;
         case true:
           console.log("set status green");
-          updateColor(stripStatus, "green");
+          colors[status[0]] = "rgb(0,255,0)";
           break;
       }
+      render();
     },
     ledController = function(state) {
       switch (state) {
         case false:
-        updateColor(stripBar, "white");
+          for (var i = 0; i < bar.length; i++) {
+            colors[bar[i]] = "rgb(0,0,255)";
+          }
           break;
         case true:
-        updateColor(stripBar, "blue");
+          for (var i = 0; i < bar.length; i++) {
+            colors[bar[i]] = "rgb(0,0,0)";
+          }
           break;
       }
+      render();
     },
-    dialController = function(val) {
+    updateDial = function(val) {
       console.log('dial value: ' + val);
       dialVal = val; //save last value
-      var litnum = stripDial.length * val/100;
+      var litnum = dial.length * val / 100;
       console.log("litnum: " + litnum);
 
-      for(var i = 0; i < stripDial.length; i++) {
-          if(i < litnum){
-            stripDial[i].color( "red" );
-          }else{
-            stripDial[i].color( "blue" );
-          }
+      for (var i = 0; i < dial.length; i++) {
+        if (i < litnum) {
+          colors[dial[i]] = "rgb(255,0,0)";
+        } else {
+          colors[dial[i]] = "rgb(0,0,0)";
+        }
       }
-      strip.show();
-
+      render();
     },
     timestamp = function() {
       var d = new Date().toString();
@@ -148,7 +169,7 @@ var MEEP = (function($) {
       //add events
       channel.on('connect', function() {
         //turn on green led
-        statusController(true);
+        updateStatus(true);
 
         if (reconnect) {
           console.log(timestamp());
@@ -169,7 +190,7 @@ var MEEP = (function($) {
       });
       channel.on('close', function(err) {
         //turn on green led
-        statusController(false);
+        updateStatus(false);
 
         console.log('connection lost: ' + err);
         startTime = timestamp();
@@ -198,7 +219,7 @@ var MEEP = (function($) {
             ledController(cmd['led']);
           }
           if (cmd.hasOwnProperty('dial')) {
-            dialController(cmd['dial']);
+            updateDial(cmd['dial']);
           }
         } catch (e) {
           console.log(e);
