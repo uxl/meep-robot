@@ -98,9 +98,9 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val);
 
-      var litnum = strip.stripLength() * val/100;
+      var litnum = 8 * val/100;
       console.log("litnum: " + litnum);
-      
+
       for(var i = 0; i < litnum; i++) {
           if(i < val){
             var showColor = "red";
