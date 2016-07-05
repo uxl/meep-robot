@@ -45,14 +45,15 @@ var MEEP = (function($) {
         strip.on("ready", function() {
           console.log("Strip ready, let's go");
           //parse strips
-          stripStatus.push(strip.pixel(0));
+          stripStatus.push(strip.pixel(1));
 
-          for(var i=1;i<=12;i++){
+          for(var i=1;i<13;i++){
             stripDial.push(strip.pixel[i]);
           }
-          for(var j=13;j<=8;j++){
+          for(var j=13;j<=21;j++){
             stripBar.push(strip.pixel[j]);
           }
+          console.log("strip length: " + strip.stripLength());
           console.log("stripStatus length: " + stripStatus.length);
           console.log("stripDial length: " + stripDial.length);
           console.log("stripBar length: " + stripBar.length);
@@ -103,25 +104,20 @@ var MEEP = (function($) {
         case false:
         console.log("set status red");
           updateColor(stripStatus, "red");
-          strip.show();
           break;
         case true:
           console.log("set status green");
           updateColor(stripStatus, "green");
-          strip.show();
           break;
       }
     },
     ledController = function(state) {
       switch (state) {
         case false:
-        stripBar.color("white");
-        stripBar.show();
-
+        updateColor(stripBar, "white");
           break;
         case true:
-          stripBar.color("blue");
-          stripBar.show();
+        updateColor(stripBar, "blue");
           break;
       }
     },
