@@ -82,14 +82,11 @@ var MEEP = (function($) {
     statusController = function(state) {
       switch (state) {
         case false:
-          strip.strips[0].color("red");
+          strip(0).color("red");
           strip.show();
           break;
         case true:
-        console.log(strip);
-
-        console.log(strip.strips);
-          strip.strips(0).color("green");
+          strip(0).color("green");
           strip.show();
           break;
       }
