@@ -4,9 +4,17 @@
 
 'use strict';
 
+var pixel = require("node-pixel");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
+
+var board = new five.Board();
+var strip = null;
+var fps = 30;
+
+
+
 var pixel = require("/home/pi/app/meep-robot/node_modules/node-pixel/lib/pixel.js");
 var MEEP = (function($) {
   //vars
@@ -28,6 +36,17 @@ var MEEP = (function($) {
       board.on("ready", function() {
         ledR = new five.Led("P1-13");
         ledG = new five.Led("P1-15");
+        strip = new pixel.Strip({
+            board: this,
+            controller: "FIRMATA",
+            strips: [  {pin: 5, length: 8},
+                        ], // this is preferred form for definition
+            //color_order: pixel.COLOR_ORDER.GRB,
+        });
+       strip.on("ready", function() {
+    // do stuff with the strip here.
+
+      })
       connect();
     },
     parseCmd = function(cmd) {
@@ -82,6 +101,18 @@ var MEEP = (function($) {
     },
     dialController = function(val) {
       console.log('dial value: ' + val);
+      // 1 - 100
+      var litnum = striplength * val/100;
+      for(var i = 0; i < strip.stripLength(); i++) {
+          if(i < val){
+            var showColor = "red";
+          }else{
+            var showColor = "white";
+          }
+          strip.pixel( i ).color( showColor );
+      }
+      strip.show();
+
     },
     timestamp = function() {
       var d = new Date().toString();
