@@ -42,6 +42,9 @@ var MEEP = (function($) {
             // this is preferred form for definition
             //color_order: pixel.COLOR_ORDER.GRB,
         });
+        strip.on("ready", function() {
+          console.log("Strip ready, let's go");
+        });
       });
       connect();
     },
@@ -98,7 +101,7 @@ var MEEP = (function($) {
     dialController = function(val) {
       console.log('dial value: ' + val);
 
-      var litnum = 8 * val/100;
+      var litnum = strip.stripLength() * val/100;
       console.log("litnum: " + litnum);
 
       for(var i = 0; i < litnum; i++) {
