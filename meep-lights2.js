@@ -18,6 +18,7 @@ var MEEP = (function($) {
     board = null,
     reconnect = false,
     startTime = null, // time reconnect
+    strip = null,
 
     init = function() {
       console.log(MEEP.init);
@@ -96,6 +97,17 @@ var MEEP = (function($) {
     },
     dialController = function(val) {
       console.log('dial value: ' + val);
+      var litnum = striplength * val/100;
+      for(var i = 0; i < strip.stripLength(); i++) {
+          if(i < val){
+            var showColor = "red";
+          }else{
+            var showColor = "white";
+          }
+          strip.pixel( i ).color( showColor );
+      }
+      strip.show();
+
     },
     timestamp = function() {
       var d = new Date().toString();
