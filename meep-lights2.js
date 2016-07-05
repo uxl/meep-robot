@@ -39,30 +39,30 @@ var MEEP = (function($) {
               {pin: 6, length: 1},  // status
             ],
         });
-        stripDial = new pixel.Strip({
-            board: this,
-            controller: "FIRMATA",
-            strips: [
-              {pin: 3, length: 12}, // dial
-            ],
-        });
-        stripBar = new pixel.Strip({
-            board: this,
-            controller: "FIRMATA",
-            strips: [
-              {pin: 5, length: 8},  // bar
-            ],
-        });
+        // stripDial = new pixel.Strip({
+        //     board: this,
+        //     controller: "FIRMATA",
+        //     strips: [
+        //       {pin: 3, length: 12}, // dial
+        //     ],
+        // });
+        // stripBar = new pixel.Strip({
+        //     board: this,
+        //     controller: "FIRMATA",
+        //     strips: [
+        //       {pin: 5, length: 8},  // bar
+        //     ],
+        // });
         stripStatus.on("ready", function() {
           console.log("Status strip ready, let's go");
           connect();
         });
-        stripDial.on("ready", function() {
-          console.log("Dial strip ready, let's go");
-        });
-        stripBar.on("ready", function() {
-          console.log("Bar strip ready, let's go");
-        });
+        // stripDial.on("ready", function() {
+        //   console.log("Dial strip ready, let's go");
+        // });
+        // stripBar.on("ready", function() {
+        //   console.log("Bar strip ready, let's go");
+        // });
       });
     },
     parseCmd = function(cmd) {
