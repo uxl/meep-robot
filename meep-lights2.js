@@ -47,15 +47,15 @@ var MEEP = (function($) {
           //parse strips
           stripStatus.push(strip.pixel(0));
 
-          // for(var i=1;i<13;i++){
-          //   stripDial.push(strip.pixel[i]);
-          // }
-          // for(var j=13;j<21;j++){
-          //   stripBar.push(strip.pixel[j]);
-          // }
+          for(var i=1;i<13;i++){
+            stripDial.push(strip.pixel(i));
+          }
+          for(var j=13;j<21;j++){
+            stripBar.push(strip.pixel(j));
+          }
           console.log("strip length: " + strip.stripLength());
           console.log("stripStatus length: " + stripStatus.length);
-          // console.log("stripDial length: " + stripDial.length);
+          console.log("stripDial length: " + stripDial.length);
           // console.log("stripBar length: " + stripBar.length);
 
           connect();
