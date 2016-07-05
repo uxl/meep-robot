@@ -45,7 +45,7 @@ var MEEP = (function($) {
         strip.on("ready", function() {
           console.log("Strip ready, let's go");
           //parse strips
-          stripStatus.push(strip.pixel(1));
+          stripStatus.push(strip.pixel(0));
 
           // for(var i=1;i<13;i++){
           //   stripDial.push(strip.pixel[i]);
