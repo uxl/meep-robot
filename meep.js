@@ -30,7 +30,7 @@ var MEEP = (function($) {
       });
       connect();
     },
-    parseCmd = funcssstion(cmd) {
+    parseCmd = function(cmd) {
       console.log('cmd', cmd);
 
       for (property in cmd) {
