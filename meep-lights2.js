@@ -46,12 +46,18 @@ var MEEP = (function($) {
           console.log("Strip ready, let's go");
           //parse strips
           stripStatus.push(strip.pixel(0));
+
           for(var i=1;i<12;i++){
             stripDial.push(strip.pixel[i]);
-            for(var i=12;i<8;i++){
-              stripBar.push(strip.pixel[i]);
-            }
           }
+          for(var i=12;i<8;i++){
+            stripBar.push(strip.pixel[i]);
+          }
+          console.log("stripStaus length: " + stripStaus.length)
+
+          console.log("stripBar length: " + stripBar.length)
+
+          console.log("stripDial length: " + stripDial.length)
           connect();
         });
 
