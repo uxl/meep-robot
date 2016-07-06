@@ -62,17 +62,17 @@ var MEEP = (function($) {
           console.log("strip ready");
           //set led default color to black
           for (var j = 0; j < 21; j++) {
-            colors[j] = "rgb(0, 0, 0)";
+            colors[j] = "black";
           }
 
 
 
           // for(var i=1;i<13;i++){
-          //   colors[i] = "rgb(0, 0, 0)";
+          //   colors[i] = "black";
           // }
 
           // for(var j=13;j<21;j++){
-          //   colors[j] = "rgb(0, 0, 0)";
+          //   colors[j] = "black";
           // }
 
           connect();
@@ -136,12 +136,12 @@ var MEEP = (function($) {
       switch (state) {
         case false:
           for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "rgb(0,0,0)";
+            colors[bar[i]] = "black";
           }
           break;
         case true:
           for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "rgb(0,0,255)";
+            colors[bar[i]] = "blue";
           }
           break;
       }
@@ -155,9 +155,9 @@ var MEEP = (function($) {
 
       for (var i = 0; i < dial.length; i++) {
         if (i < litnum) {
-          colors[dial[i]] = "rgb(255,0,0)";
+          colors[dial[i]] = "red";
         } else {
-          colors[dial[i]] = "rgb(0,0,0)";
+          colors[dial[i]] = "black";
         }
       }
       render();
