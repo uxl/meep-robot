@@ -45,12 +45,12 @@ var MEEP = (function($) {
           controller: "FIRMATA",
           strips: [{
               pin: 6,
-              length: 1
+              length: 13
             }, // status
-            {
-              pin: 5,
-              length: 12
-            }, // dial
+            // {
+            //   pin: 5,
+            //   length: 12
+            // }, // dial
             {
               pin: 7,
               length: 8
@@ -112,7 +112,7 @@ var MEEP = (function($) {
     },
     render = function() {
       console.log("render called")
-      for (var i = 0; i < strip.stripLength(); ++i) {
+      for (var i = 0; i < strip.stripLength(); i++) {
         strip.pixel(i).color(colors[i]);
       }
       console.log('colors: ' + colors);
