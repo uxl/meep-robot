@@ -17,7 +17,7 @@ console.log("board ready");
         controller: "FIRMATA",
         strips: [   {pin: 6, length: 4},
                     {pin: 5, length: 8},
-                    {pin: 3, length: 12},
+                    {pin: 9, length: 12},
                     {pin:10, length: 60},
                     ], // this is preferred form for definition
         //color_order: pixel.COLOR_ORDER.GRB,
