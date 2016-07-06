@@ -55,7 +55,7 @@ var MEEP = (function($) {
               length: 12
             }, // dial
             {
-              pin: 7,
+              pin: 10,
               length: 8
             }, // bar
           ],
