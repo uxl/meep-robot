@@ -27,7 +27,7 @@ var MEEP = (function($) {
 
     colors = [],
     renderInt = null,
-    fps = 30,
+    fps = 1,
 
     strip = null,
     dialVal = 0,
