@@ -65,7 +65,7 @@ var MEEP = (function($) {
           console.log("strip ready");
           //set led default color to black
           for (var j = 0; j < 21; j++) {
-            colors[j] = "orange";
+            colors[j] = "black";
             pixels[j] = strip.pixel(j);
           }
 
@@ -133,7 +133,7 @@ var MEEP = (function($) {
       switch (state) {
         case false:
           for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "orange";
+            colors[bar[i]] = "black";
           }
           break;
         case true:
@@ -153,7 +153,7 @@ var MEEP = (function($) {
         if (i < litnum) {
           colors[dial[i]] = "red";
         } else {
-          colors[dial[i]] = "orange";
+          colors[dial[i]] = "black";
         }
       }
 
