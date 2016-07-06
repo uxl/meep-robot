@@ -50,7 +50,7 @@ var MEEP = (function($) {
               length: 1
             }, // status
             {
-              pin: 5, // try
+              pin: 9, // try
               length: 12
             }, // dial
             {
