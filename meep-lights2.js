@@ -21,9 +21,9 @@ var MEEP = (function($) {
 
     stripArr = [status, dial, bar],
 
-    status = [0,1],
-    dial = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-    bar = [14, 15, 16, 17, 18, 19, 20, 21, 22],
+    status = [0],
+    dial = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    bar = [13, 14, 15, 16, 17, 18, 19, 20],
 
     colors = [],
     renderInt = null,
@@ -47,7 +47,7 @@ var MEEP = (function($) {
           controller: "FIRMATA",
           strips: [{
               pin: 6,
-              length: 2
+              length: 1
             }, // status
             {
               pin: 5,
@@ -67,15 +67,6 @@ var MEEP = (function($) {
             colors[j] = "black";
           }
 
-
-
-          // for(var i=1;i<13;i++){
-          //   colors[i] = "black";
-          // }
-
-          // for(var j=13;j<21;j++){
-          //   colors[j] = "black";
-          // }
           connect();
         });
 
