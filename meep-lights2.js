@@ -107,7 +107,7 @@ var MEEP = (function($) {
       var len = pixels.length;
       for (var i = 0; i < len; i++) {
         pixels[i].color(colors[i]);
-        console.log(i + " " + colors[i]);
+        //console.log(i + " " + colors[i]);
 
       }
       strip.show();
@@ -115,7 +115,7 @@ var MEEP = (function($) {
     startRender = function(){
       renderInt = setInterval(function(){
         render();
-      },10000);
+      },100/fps);
     },
     updateStatus = function(state) {
       switch (state) {
