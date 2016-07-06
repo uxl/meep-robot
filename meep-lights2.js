@@ -182,7 +182,9 @@ var MEEP = (function($) {
         sendMeep({
           "status": "bot-syn"
         });
-        updateStatus(true);
+        setTimeout(function(){
+          updateStatus(true);
+        }, 2000);
 
         // read/write connection is ready to use
       });
