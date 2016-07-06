@@ -26,6 +26,8 @@ var MEEP = (function($) {
     bar = [13, 14, 15, 16, 17, 18, 19, 20, 21],
 
     colors = [],
+    renderInt = null,
+    fps = 30,
 
     strip = null,
     dialVal = 0,
@@ -74,7 +76,6 @@ var MEEP = (function($) {
           // for(var j=13;j<21;j++){
           //   colors[j] = "black";
           // }
-
           connect();
         });
 
@@ -103,7 +104,6 @@ var MEEP = (function($) {
       var data = JSON.stringify(msg);
       console.log('sendMeep: ' + data);
       console.log('sendMeep msg: ' + msg['data']);
-
       try {
         channel.write(data);
       } catch (e) {
@@ -118,17 +118,20 @@ var MEEP = (function($) {
       console.log('colors: ' + colors);
       strip.show();
     },
+    startRender = function(){
+      renderInt = setInterval(function(){
+        render();
+      },100/fps);
+    },
     updateStatus = function(state) {
       switch (state) {
         case false:
           console.log("set status red");
           colors[0] = "red";
-          render();
           break;
         case true:
           console.log("set status green");
           colors[0] = "green";
-          render();
           break;
       }
     },
@@ -145,7 +148,6 @@ var MEEP = (function($) {
           }
           break;
       }
-      render();
     },
     updateDial = function(val) {
       console.log('dial value: ' + val);
@@ -160,7 +162,7 @@ var MEEP = (function($) {
           colors[dial[i]] = "black";
         }
       }
-      render();
+
     },
     timestamp = function() {
       var d = new Date().toString();
@@ -182,10 +184,9 @@ var MEEP = (function($) {
         sendMeep({
           "status": "bot-syn"
         });
-        setTimeout(function(){
-          updateStatus(true);
-        }, 2000);
+        updateStatus(true);
 
+        startRender();
         // read/write connection is ready to use
       });
       channel.on('error', function(err) {
