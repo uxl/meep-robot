@@ -172,7 +172,6 @@ var MEEP = (function($) {
       //add events
       channel.on('connect', function() {
         //turn on green led
-        updateStatus(true);
 
         if (reconnect) {
           console.log(timestamp());
@@ -183,6 +182,7 @@ var MEEP = (function($) {
         sendMeep({
           "status": "bot-syn"
         });
+        updateStatus(true);
 
         // read/write connection is ready to use
       });
