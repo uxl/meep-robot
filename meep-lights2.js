@@ -102,16 +102,17 @@ var MEEP = (function($) {
       }
     },
     render = function() {
-      //console.log("render called")
       for (var i = 0; i < strip.stripLength(); i++) {
         strip.pixel(i).color(colors[i]);
+        console.log("render called: " + colors[i])
+
       }
       strip.show();
     },
     startRender = function(){
       renderInt = setInterval(function(){
         render();
-      },100/fps);
+      },1000/fps);
     },
     updateStatus = function(state) {
       switch (state) {
