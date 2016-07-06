@@ -31,6 +31,7 @@ var MEEP = (function($) {
 
     strip = null,
     dialVal = 0,
+    pixels = [],
 
     init = function() {
       console.log(MEEP.init);
@@ -65,6 +66,7 @@ var MEEP = (function($) {
           //set led default color to black
           for (var j = 0; j < 21; j++) {
             colors[j] = "black";
+            pixels.push(strip.pixel(i));
           }
 
           connect();
@@ -102,8 +104,9 @@ var MEEP = (function($) {
       }
     },
     render = function() {
-      for (var i = 0; i < strip.stripLength(); i++) {
-        strip.pixel(i).color(colors[i]);
+      var len = pixels.length;
+      for (var i = 0; i < len; i++) {
+        pixels[i].color(colors[i]);
         console.log(i + " " + colors[i]);
 
       }
