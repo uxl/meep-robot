@@ -15,10 +15,10 @@ console.log("board ready");
     strip = new pixel.Strip({
         board: this,
         controller: "FIRMATA",
-        strips: [   {pin: 6, length: 4},
-                    {pin: 5, length: 8},
-                    {pin: 9, length: 12},
-                    {pin:10, length: 60},
+        strips: [   {pin: 6, length: 1},
+                    {pin: 9, length: 8},
+                    {pin: 10, length: 12},
+                    //{pin:10, length: 60},
                     ], // this is preferred form for definition
         //color_order: pixel.COLOR_ORDER.GRB,
     });
