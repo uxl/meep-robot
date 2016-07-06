@@ -41,17 +41,16 @@ var MEEP = (function($) {
 
       //events
       board.on("ready", function() {
-        // ledR = new five.Led("P1-8");
-        // ledG = new five.Led("P1-10");
+
         strip = new pixel.Strip({
           board: this,
           controller: "FIRMATA",
           strips: [{
-              pin: 6,
+              pin: 6, //try 9
               length: 1
             }, // status
             {
-              pin: 5,
+              pin: 5, // try
               length: 12
             }, // dial
             {
@@ -128,6 +127,7 @@ var MEEP = (function($) {
           colors[0] = "green";
           break;
       }
+      render();
     },
     ledController = function(state) {
       switch (state) {
@@ -142,6 +142,7 @@ var MEEP = (function($) {
           }
           break;
       }
+      render();
     },
     updateDial = function(val) {
       console.log('dial value: ' + val);
@@ -156,7 +157,7 @@ var MEEP = (function($) {
           colors[dial[i]] = "black";
         }
       }
-
+      render();
     },
     timestamp = function() {
       var d = new Date().toString();
@@ -180,7 +181,8 @@ var MEEP = (function($) {
         });
         updateStatus(true);
 
-        startRender();
+        //startRender();
+        render();
         // read/write connection is ready to use
       });
       channel.on('error', function(err) {
