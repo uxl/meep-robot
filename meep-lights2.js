@@ -66,7 +66,7 @@ var MEEP = (function($) {
           //set led default color to black
           for (var j = 0; j < 21; j++) {
             colors[j] = "black";
-            pixels.push(strip.pixel(i));
+            pixels[j] = strip.pixel(j);
           }
 
           connect();
