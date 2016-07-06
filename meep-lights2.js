@@ -122,12 +122,12 @@ var MEEP = (function($) {
       switch (state) {
         case false:
           console.log("set status red");
-          colors[0] = "rgb(255,0,0)";
+          colors[0] = "red";
           render();
           break;
         case true:
           console.log("set status green");
-          colors[0] = "rgb(0,255,0)";
+          colors[0] = "green";
           render();
           break;
       }
