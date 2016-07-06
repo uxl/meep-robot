@@ -104,7 +104,7 @@ var MEEP = (function($) {
     render = function() {
       for (var i = 0; i < strip.stripLength(); i++) {
         strip.pixel(i).color(colors[i]);
-        console.log("render called: " + colors[i])
+        console.log(i + " " + colors[i]);
 
       }
       strip.show();
