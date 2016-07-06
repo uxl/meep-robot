@@ -112,7 +112,7 @@ var MEEP = (function($) {
     startRender = function(){
       renderInt = setInterval(function(){
         render();
-      },1000/fps);
+      },10000);
     },
     updateStatus = function(state) {
       switch (state) {
