@@ -76,7 +76,7 @@ var MEEP = (function($) {
       console.log('cmd', cmd);
 
       for (property in cmd) {
-        console.log('property', property);
+        //console.log('property', property);
         switch (property) {
           case "led":
             console.log('led action');
@@ -170,8 +170,8 @@ var MEEP = (function($) {
         //turn on green led
 
         if (reconnect) {
-          console.log(timestamp());
-          console.log('-------------');
+          //console.log(timestamp());
+          //console.log('-------------');
           //may use parse to subtract times
           reconnect = false;
         };
