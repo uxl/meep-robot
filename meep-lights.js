@@ -206,9 +206,9 @@ var MEEP = (function($) {
         //determine device
         try {
           var cmd = JSON.parse(cmdObj);
-          console.log(cmd);
+          //console.log(cmd);
 
-          console.log(timestamp());
+          //console.log(timestamp());
           if (cmd.hasOwnProperty('status')) {
             if (cmd['status'] == "client-syn") {
               sendMeep({
