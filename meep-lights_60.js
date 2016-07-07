@@ -22,7 +22,7 @@ var MEEP = (function($) {
     stripArr = [status, dial, bar],
 
     status = [0],
-    dial = null,
+    dial = [],
     bar = [61],
 
     colors = [],
