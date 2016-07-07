@@ -30,7 +30,6 @@ var MEEP = (function($) {
     fps = 1,
 
     strip = null,
-    dialVal = 0,
     pixels = [],
 
     init = function() {
@@ -145,10 +144,10 @@ var MEEP = (function($) {
       render();
     },
     updateDial = function(val) {
-      console.log('dial value: ' + val);
-      dialVal = val; //save last value
-      var litnum = dial.length * val / 100;
-      console.log("litnum: " + litnum);
+      //console.log('dial value: ' + val);
+
+      var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
+      //console.log("litnum: " + litnum);
 
       for (var i = 0; i < dial.length; i++) {
         if (i < litnum) {
