@@ -33,14 +33,13 @@ var MEEP = (function($) {
     pixels = [],
 
     init = function() {
-      for(var i = 1; i <= 60; i++){
-        dial.push(i);
-      }
-
-      console.log(MEEP.init);
+      console.log("MEEP.init");
       board = new five.Board({
         //io: new Raspi()
       });
+      for(var i = 1; i <= 60; i++){
+        dial.push(i);
+      }
 
       //events
       board.on("ready", function() {
