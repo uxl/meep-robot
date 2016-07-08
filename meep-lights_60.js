@@ -56,7 +56,7 @@ var MEEP = (function($) {
               length: 60
             }, // dial
             {
-              pin: 10,
+              pin: 3,
               length: 1
             }, // bar
           ],
@@ -65,7 +65,7 @@ var MEEP = (function($) {
         strip.on("ready", function() {
           console.log("strip ready");
           //set led default color to black
-          for (var j = 0; j < 61; j++) {
+          for (var j = 0; j <= 61; j++) {
             colors[j] = "black";
             pixels[j] = strip.pixel(j);
           }
