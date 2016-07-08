@@ -108,7 +108,7 @@ var MEEP = (function($) {
       var len = pixels.length;
       for (var i = 0; i < len; i++) {
         pixels[i].color(colors[i]);
-        console.log(i + " " + colors[i]);
+        //console.log(i + " " + colors[i]);
 
       }
       strip.show();
@@ -205,7 +205,7 @@ var MEEP = (function($) {
         //determine device
         try {
           var cmd = JSON.parse(cmdObj);
-          console.log(cmd);
+          //console.log(cmd);
 
           //console.log(timestamp());
           if (cmd.hasOwnProperty('status')) {
