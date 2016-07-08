@@ -134,14 +134,10 @@ var MEEP = (function($) {
     ledController = function(state) {
       switch (state) {
         case false:
-          for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "black";
-          }
+            colors[bar[0]] = "black";
           break;
         case true:
-          for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "blue";
-          }
+            colors[bar[0]] = "blue";
           break;
       }
       render();
