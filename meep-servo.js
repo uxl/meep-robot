@@ -8,6 +8,8 @@ var pixel = require("node-pixel");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
+var meepServo = require('./MeepServo');
+
 
 var MEEP = (function($) {
   //vars
@@ -18,7 +20,6 @@ var MEEP = (function($) {
     board = null,
     reconnect = false,
     startTime = null, // time reconnect
-    servo = null,
 
     stripArr = [status, dial, bar],
 
@@ -34,6 +35,8 @@ var MEEP = (function($) {
     pixels = [],
 
     init = function() {
+      meepServo = new MeepServo();
+      meepServo.setRange(3, 0, 365);
       console.log(MEEP.init);
       board = new five.Board({
         //io: new Raspi()
@@ -43,10 +46,7 @@ var MEEP = (function($) {
       board.on("ready", function() {
 
 	//define our servo
-	servo = new five.Servo({
-		pin: 3,
-		range: [0, 365]
-	});
+
 
         strip = new pixel.Strip({
           board: this,
@@ -155,7 +155,6 @@ var MEEP = (function($) {
 
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
       //console.log("litnum: " + litnum);
-      servo.to(val);
 
       for (var i = 0; i < dial.length; i++) {
         if (i < litnum) {
