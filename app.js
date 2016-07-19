@@ -8,7 +8,7 @@ var pixel = require("node-pixel");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
-var meepServo = require('./MeepServo');
+var meepServo = require('MeepServo').MeepServo;
 
 
 var MEEP = (function($) {
