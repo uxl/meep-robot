@@ -4,16 +4,15 @@
 
 'use strict';
 
-var pixel = require("node-pixel");
-var five = require("johnny-five");
-var Raspi = require("raspi-io");
-var hydna = require('hydna');
-var meepServo = require('MeepServo');
-
-
 var MEEP = (function($) {
   //vars
-  var channel = null,
+  var pixel = require("node-pixel"),
+   five = require("johnny-five"),
+   Raspi = require("raspi-io"),
+   hydna = require('hydna'),
+   meepServo = require('./MeepServo'),
+   channel = null,
+
     //ledR = null,
     //ledG = null,
     starttime = null,
