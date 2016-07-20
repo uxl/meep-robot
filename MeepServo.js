@@ -1,4 +1,6 @@
 var five = require("johnny-five");
+var Raspi = require("raspi-io"),
+
 
 var MeepServo = function() {};
 MeepServo.prototype.servo = null;
