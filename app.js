@@ -29,7 +29,7 @@ var MEEP = (function($) {
     colors = [],
     renderInt = null,
     fps = 1,
-
+    servo = null,
     strip = null,
     pixels = [],
 
@@ -40,8 +40,8 @@ var MEEP = (function($) {
       console.log(MEEP.init);
 
       //sends pin number and range of degrees
-      var meepServo = new MeepServo();
-      meepServo.init(3, 0, 365);
+      servo = new MeepServo();
+      servo.init(3, 10, 180);
 
       //initialize the five board
       //looks for arduino connected
