@@ -10,7 +10,7 @@ var MEEP = (function($) {
    five = require("johnny-five"),
    Raspi = require("raspi-io"),
    hydna = require('hydna'),
-   meepServo = require('./MeepServo'),
+   MeepServo = require('./MeepServo'), //anynomous prototype
    channel = null,
 
     //ledR = null,
@@ -40,6 +40,7 @@ var MEEP = (function($) {
       console.log(MEEP.init);
 
       //sends pin number and range of degrees
+      var meepServo = new MeepServo();
       meepServo.init(3, 0, 365);
 
       //initialize the five board
