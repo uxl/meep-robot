@@ -7,10 +7,11 @@ var MeepServo = function() {};
 
 MeepServo.prototype.init = function(pin, min, max) {
   console.log('pin: ' + pin + ' | min: ' + min + ' | max: ' + max);
-  this = new five.Servo({
-    pin: pin,
-    range: [min, max]
-  });
+  console.log('pin: ' + this.pin + ' | min: ' + this.min + ' | max: ' + this.max);
+  // this = new five.Servo({
+  //   pin: pin,
+  //   range: [min, max]
+  // });
 };
 MeepServo.prototype.to = function(val) {
   //this.servo.to(val);
