@@ -8,7 +8,7 @@ var pixel = require("node-pixel");
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var hydna = require('hydna');
-var meepServo = require('MeepServo').MeepServo;
+var meepServo = require('MeepServo');
 
 
 var MEEP = (function($) {
@@ -34,20 +34,26 @@ var MEEP = (function($) {
     strip = null,
     pixels = [],
 
+    // initialize the program
+    // is called at the end of the block
+
     init = function() {
-      meepServo = new MeepServo();
-      meepServo.setRange(3, 0, 365);
       console.log(MEEP.init);
+
+      //sends pin number and range of degrees
+      meepServo.init(3, 0, 365);
+
+      //initialize the five board
+      //looks for arduino connected
+      //via serial usb connection
       board = new five.Board({
-        //io: new Raspi()
+
       });
 
-      //events
+      //Runs when board is ready
       board.on("ready", function() {
 
-	//define our servo
-
-
+        //create a new neopixel strip
         strip = new pixel.Strip({
           board: this,
           controller: "FIRMATA",
@@ -66,6 +72,8 @@ var MEEP = (function($) {
           ],
         });
 
+        //when strip is ready sets all pixels
+        //to off aka black
         strip.on("ready", function() {
           console.log("strip ready");
           //set led default color to black
@@ -74,11 +82,14 @@ var MEEP = (function($) {
             pixels[j] = strip.pixel(j);
           }
 
+          //connect to hydna cloud service to listen
+          //for frontend commands
           connect();
         });
 
       });
     },
+    //parses commands from frontend
     parseCmd = function(cmd) {
       console.log('cmd', cmd);
 
@@ -153,9 +164,10 @@ var MEEP = (function($) {
     updateDial = function(val) {
       //console.log('dial value: ' + val);
 
+      //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
-      //console.log("litnum: " + litnum);
 
+      //loop through and update colors array to red for on and black for off
       for (var i = 0; i < dial.length; i++) {
         if (i < litnum) {
           colors[dial[i]] = "red";
