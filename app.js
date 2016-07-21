@@ -42,6 +42,7 @@ var MEEP = (function($) {
       //sends pin number and range of degrees
       servo = new MeepServo();
       servo.init(3, 10, 180);
+      servo.to(100);
 
       //initialize the five board
       //looks for arduino connected
