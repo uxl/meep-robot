@@ -53,7 +53,7 @@ var MEEP = (function($) {
         //sends pin number and range of degrees
         servo = new MeepServo();
         servo.init(3, 10, 180);
-        servo.to(100);
+        servo.to(10);
 
         //create a new neopixel strip
         strip = new pixel.Strip({
