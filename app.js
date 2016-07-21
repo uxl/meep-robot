@@ -51,9 +51,10 @@ var MEEP = (function($) {
       board.on("ready", function() {
 
         //sends pin number and range of degrees
-        servo = new MeepServo();
-        servo.init(3, 10, 180);
-        servo.to(10);
+        servos = new MeepServo();
+        servos.init(3, 10, 180);
+        servos.list[0].to(10);
+        console.log(servo);
 
         //create a new neopixel strip
         strip = new pixel.Strip({
