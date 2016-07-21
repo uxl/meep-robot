@@ -11,7 +11,7 @@ MeepServo.prototype.init = function(pin, min, max) {
     pin: pin,
     range: [min, max]
   });
-  this.list.push(me);
+  //this.list.push(me);
 };
 // MeepServo.prototype.to = function(val) {
 //   console.log('servo to: ' + val );

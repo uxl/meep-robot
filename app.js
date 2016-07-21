@@ -53,10 +53,10 @@ var MEEP = (function($) {
         //sends pin number and range of degrees
         servos = new MeepServo();
         servos.init(3, 10, 180);
-        servos.list[0].to(10);
+        servos.to(10);
         console.log(servos);
 
-        //create a new neopixel strip
+        //create a new neopixel strx  ip
         strip = new pixel.Strip({
           board: this,
           controller: "FIRMATA",
