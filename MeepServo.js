@@ -12,10 +12,10 @@ MeepServo.prototype.init = function(pin, min, max) {
     range: [min, max]
   });
 };
-MeepServo.prototype.to = function(pin, min, max) {
-  console.log('pin: ' + pin + ' | min: ' + min + ' | max: ' + max);
+MeepServo.prototype.to = function(val) {
+  console.log('servo to: ' + val );
 
-  this.servo.to(100);
+  this.servo.to(val);
 };
 
 module.exports = MeepServo;

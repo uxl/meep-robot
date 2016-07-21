@@ -165,7 +165,8 @@ var MEEP = (function($) {
     },
     updateDial = function(val) {
       //console.log('dial value: ' + val);
-
+      var deg = Math.floor(359 * val / 100);
+      servo.to(deg);
       //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
 
