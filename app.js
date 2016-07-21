@@ -29,7 +29,7 @@ var MEEP = (function($) {
     colors = [],
     renderInt = null,
     fps = 1,
-    servos = null,
+    servo = null,
     strip = null,
     pixels = [],
 
@@ -51,9 +51,9 @@ var MEEP = (function($) {
       board.on("ready", function() {
 
         //sends pin number and range of degrees
-        servos = new MeepServo();
-        servos.init(3, 10, 180);
-        servos.to(10);
+        servo = new MeepServo();
+        servo.init(3, 10, 180);
+        servo.sweep();
         console.log(servos);
 
         //create a new neopixel strx  ip
