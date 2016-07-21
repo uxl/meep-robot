@@ -29,7 +29,7 @@ var MEEP = (function($) {
     colors = [],
     renderInt = null,
     fps = 1,
-    servo = null,
+    servos = null,
     strip = null,
     pixels = [],
 
@@ -54,7 +54,7 @@ var MEEP = (function($) {
         servos = new MeepServo();
         servos.init(3, 10, 180);
         servos.list[0].to(10);
-        console.log(servo);
+        console.log(servos);
 
         //create a new neopixel strip
         strip = new pixel.Strip({

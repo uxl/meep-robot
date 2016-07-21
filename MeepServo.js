@@ -3,7 +3,7 @@ var Raspi = require("raspi-io");
 
 
 var MeepServo = function() {};
-MeepServo.prototype.list = [];
+// MeepServo.prototype.list = [];
 MeepServo.prototype.init = function(pin, min, max) {
   console.log('pin: ' + pin + ' | min: ' + min + ' | max: ' + max);
 
