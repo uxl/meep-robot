@@ -39,10 +39,6 @@ var MEEP = (function($) {
     init = function() {
       console.log(MEEP.init);
 
-      //sends pin number and range of degrees
-      servo = new MeepServo();
-      servo.init(3, 10, 180);
-      servo.to(100);
 
       //initialize the five board
       //looks for arduino connected
@@ -53,6 +49,11 @@ var MEEP = (function($) {
 
       //Runs when board is ready
       board.on("ready", function() {
+
+        //sends pin number and range of degrees
+        servo = new MeepServo();
+        servo.init(3, 10, 180);
+        servo.to(100);
 
         //create a new neopixel strip
         strip = new pixel.Strip({
