@@ -6,8 +6,8 @@ var MeepServo = function() {};
 // MeepServo.prototype.list = [];
 MeepServo.prototype.init = function(pin, min, max) {
   console.log('pin: ' + pin + ' | min: ' + min + ' | max: ' + max);
-
-  var me = new five.Servo({
+  var that = this;
+  that = new five.Servo({
     pin: pin,
     range: [min, max]
   });
