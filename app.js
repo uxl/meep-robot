@@ -52,7 +52,7 @@ var MEEP = (function($) {
 
         //sends pin number and range of degrees
         servo = new MeepServo();
-        servo.init(3, 10, 180);
+        // servo.init(3, 10, 180);
         servo.sweep();
         console.log(servos);
 

@@ -1,6 +1,7 @@
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
 
+var servo = new five.Servo(3);
 
 var MeepServo = function() {};
 // MeepServo.prototype.list = [];
@@ -21,6 +22,6 @@ MeepServo.prototype.to = function(val) {
   that.servo.to(val);
 };
 MeepServo.prototype.sweep = function() {
-  five.sweep();
+  servo.sweep();
 };
 module.exports = MeepServo;
