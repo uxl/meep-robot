@@ -52,7 +52,7 @@ var MEEP = (function($) {
 
         //sends pin number and range of degrees
         servo = new MeepServo();
-        servo.init(3, 0, 359);
+        servo.init(3, 0, 180);
         servo.sweep();
         console.log(servo);
 
@@ -166,7 +166,7 @@ var MEEP = (function($) {
     },
     updateDial = function(val) {
       //console.log('dial value: ' + val);
-      var deg = Math.floor(359 * val / 100);
+      var deg = Math.floor(180 * val / 100);
       servo.to(deg);
       //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
