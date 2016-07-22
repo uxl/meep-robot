@@ -15,10 +15,11 @@ MeepServo.prototype.init = function(pin, min, max) {
 };
 MeepServo.prototype.to = function(val) {
   console.log('servo to: ' + val );
+  var that = this;
 
-  this.servo.to(val);
+  that.servo.to(val);
 };
 MeepServo.prototype.sweep = function() {
-  five.sweep();
+  five.Servo.sweep();
 };
 module.exports = MeepServo;
