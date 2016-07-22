@@ -30,6 +30,7 @@ var MEEP = (function($) {
     renderInt = null,
     fps = 1,
     servo = null,
+    servo2 = null,
     strip = null,
     pixels = [],
 
@@ -54,7 +55,10 @@ var MEEP = (function($) {
         servo = new MeepServo();
         servo.init(3, 0, 180);
         servo.sweep();
-        console.log(servo);
+
+        servo2 = new MeepServo();
+        servo2.init(8, 0, 180);
+        servo2.sweep();
 
         //create a new neopixel strx  ip
         strip = new pixel.Strip({
