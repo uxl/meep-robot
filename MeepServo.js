@@ -13,6 +13,7 @@ MeepServo.prototype.init = function(pin, min, max) {
   });
   //this.list.push(me);
 };
+
 MeepServo.prototype.to = function(val) {
   console.log('servo to: ' + val );
   var that = this;
@@ -20,6 +21,6 @@ MeepServo.prototype.to = function(val) {
   that.servo.to(val);
 };
 MeepServo.prototype.sweep = function() {
-  five.Servo.sweep();
+  five.sweep();
 };
 module.exports = MeepServo;
