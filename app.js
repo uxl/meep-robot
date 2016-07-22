@@ -29,9 +29,9 @@ var MEEP = (function($) {
     colors = [],
     renderInt = null,
     fps = 1,
-    servo = null,
+    servo1 = null,
     servo2 = null,
-    strip1 = null,
+    strip = null,
     pixels = [],
 
     // initialize the program
