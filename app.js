@@ -54,7 +54,7 @@ var MEEP = (function($) {
         servo = new MeepServo();
         servo.init(3, 10, 180);
         servo.sweep();
-        console.log(servos);
+        console.log(servo);
 
         //create a new neopixel strx  ip
         strip = new pixel.Strip({
