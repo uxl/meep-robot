@@ -9,11 +9,11 @@ MeepServo.prototype.init = function(pin, min, max) {
     pin: pin,
     range: [min, max]
   });
-  //this.list.push(me);
 };
 
 MeepServo.prototype.to = function(val) {
   console.log('servo to: ' + val );
+  this.servo.stop();
   this.servo.to(val);
 };
 MeepServo.prototype.sweep = function() {
