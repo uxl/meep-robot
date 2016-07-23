@@ -3,7 +3,7 @@ var Raspi = require("raspi-io");
 
 var MeepServo = function() {};
 // MeepServo.prototype.list = [];
-MeepServo.prototype.init = function(pin, min, max) {
+MeepServo.prototype.servoInit = function(pin, min, max) {
   console.log('pin: %s | min: %s | max: %s', pin, min, max);
   this.servo = new five.Servo({
     pin: pin,
@@ -11,12 +11,12 @@ MeepServo.prototype.init = function(pin, min, max) {
   });
 };
 
-MeepServo.prototype.to = function(val) {
+MeepServo.prototype.servoTo = function(val) {
   console.log('servo to: ' + val );
   this.servo.stop();
   this.servo.to(val);
 };
-MeepServo.prototype.sweep = function() {
+MeepServo.prototype.servoSweep = function() {
   this.servo.sweep();
 };
 module.exports = MeepServo;

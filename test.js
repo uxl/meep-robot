@@ -14,8 +14,11 @@ var MEEP = (function($) {
 
       //sends pin number and range of degrees
       var test = new TestModule();
-      test.init(3, 10, 180);
-      console.log(test.servo);
+      test.add(3);
+      var test = new TestModule();
+      test.add(5);
+      console.log(test.list);
+      //console.log(list);
     };
   return {
     init: init

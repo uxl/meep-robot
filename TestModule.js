@@ -1,14 +1,12 @@
 
 var TestModule = function() {};
 
-TestModule.prototype.init = function(pin, min, max) {
-  console.log('pin: ' + pin + ' | min: ' + min + ' | max: ' + max);
+var MeepServos = function() {};
 
-this.servo = {
-    pin: pin,
-    range: [min, max]
-  };
-  //return this.servo;
+TestModule.prototype.list = [];
+
+TestModule.prototype.add = function(val) {
+  this.list.push(val);
 };
 
 module.exports = TestModule;
