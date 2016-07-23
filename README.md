@@ -97,12 +97,3 @@ myServos.servosSweep();
 ```
 myServos.servosStop();
 ```
-
-
-<BR><BR>
-
-startup?
-```
-touch /home/pi/app.js
-su pi -c 'node /home/pi/app.js < /dev/null &'
-```
