@@ -19,4 +19,7 @@ MeepServo.prototype.servoTo = function(val) {
 MeepServo.prototype.servoSweep = function() {
   this.servo.sweep();
 };
+MeepServo.prototype.servoStop = function() {
+  this.servo.stop();
+};
 module.exports = MeepServo;

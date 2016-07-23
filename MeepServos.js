@@ -5,7 +5,7 @@ var MeepServos = function() {};
 
 MeepServos.prototype.list = [];
 
-MeepServos.prototype.add = function(pin, min, max) {
+MeepServos.prototype.servosAdd = function(pin, min, max) {
   console.log('pin: %s | min: %s | max: %s', pin, min, max);
   this.list.push(new five.Servo({
     pin: pin,
@@ -25,5 +25,8 @@ MeepServos.prototype.servoTo = function(val) {
 };
 MeepServos.prototype.servosSweep = function() {
   this.servos.sweep();
+};
+MeepServos.prototype.servosStop = function() {
+  this.servos.stop();
 };
 module.exports = MeepServos;

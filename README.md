@@ -1,5 +1,5 @@
-# meep
-raspberry pi experiment with pusher and johnny-five
+# meep robot
+raspberry pi experiment with hydna and johnny-five
 
 <BR>
 
@@ -50,6 +50,56 @@ set permissions:
 sudo chmod 755 /home/pi/.config/lxsession/LXDE-pi/launch.sh
 ```
 
+<BR>
+##Servo Commands
+
+###Individual Servos
+
+**Add servo individually**
+```
+var myServo = new MeepServo();
+myServo.servoInit(<pin>, <min-range>, <max-range>);
+```
+
+**Move servo individually**
+```
+myServo.servoTo(<degrees>);
+```
+
+**Sweep servo individually**
+```
+myServo.servoSweep();
+```
+
+**Stop servo individually**
+```
+myServo.servoStop();
+```
+<BR>
+##Servo Groups
+**Add servo to group**
+```
+var myServo = new MeepServos();
+myServo.servoAdd(<pin>, <min-range>, <max-range>);
+```
+
+**Move servos in group**
+```
+myServo.servosTo(<degrees>);
+```
+
+**Sweep servos in group**
+```
+myServo.servosSweep();
+```
+
+**Stop servos in group**
+```
+myServo.servosStop();
+```
+
+
+<BR><BR>
 
 startup?
 ```
