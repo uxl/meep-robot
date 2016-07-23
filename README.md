@@ -79,23 +79,23 @@ myServo.servoStop();
 ##Servo Groups
 **Add servo to group**
 ```
-var myServo = new MeepServos();
-myServo.servoAdd(<pin>, <min-range>, <max-range>);
+var myServos = new MeepServos();
+myServos.servosAdd(<pin>, <min-range>, <max-range>);
 ```
 
 **Move servos in group**
 ```
-myServo.servosTo(<degrees>);
+myServos.servosTo(<degrees>);
 ```
 
 **Sweep servos in group**
 ```
-myServo.servosSweep();
+myServos.servosSweep();
 ```
 
 **Stop servos in group**
 ```
-myServo.servosStop();
+myServos.servosStop();
 ```
 
 
