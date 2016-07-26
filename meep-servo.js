@@ -155,7 +155,7 @@ var MEEP = (function($) {
 
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
       //console.log("litnum: " + litnum);
-      servo.to(val);
+      servo.to(180 * val/100);
 
       for (var i = 0; i < dial.length; i++) {
         if (i < litnum) {
