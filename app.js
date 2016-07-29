@@ -1,7 +1,7 @@
 /* global console, jQuery, $, TrackGA */
 // meep robot
 // Mullen - Wilkinson 2016
-// IS IT WORKING??????
+// hmmmm
 'use strict';
 
 var MEEP = (function($) {
