@@ -56,8 +56,8 @@ var MEEP = (function($) {
         servo1.servoInit(3, 0, 180);
   //      servo1.servoSweep();
 
-        servo2 = new MeepServo();
-        servo2.servoInit(8, 0, 180);
+ //       servo2 = new MeepServo();
+//        servo2.servoInit(8, 0, 180);
 //        servo2.servoSweep();
 
         //create a new neopixel strx  ip
@@ -194,7 +194,7 @@ var MEEP = (function($) {
       //console.log('servo value: ' + val);
       var deg = Math.floor(180 * val / 100);
       servo1.servoTo(deg);
-      servo2.servoTo(deg);
+   //   servo2.servoTo(deg);
       render();
     },
     timestamp = function() {
