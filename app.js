@@ -108,9 +108,9 @@ var MEEP = (function($) {
             ledController(cmd[property]);
             break;
           case "dial":
-            console.log('dial action');
+            console.log('dial switch: 111');
             updateDial(cmd[property]);
-	    updateServo(cmd[property]);
+	          updateServo(cmd[property]);
             break;
 //	  case "servo":
 //	    console.log('servo action');
@@ -259,10 +259,11 @@ var MEEP = (function($) {
             ledController(cmd['led']);
           }
           if (cmd.hasOwnProperty('dial')) {
+            console.log('dial line:262');
             updateDial(cmd['dial']);
           }
 //	  if (cmd.hasOwnProperty('servo')) {
-//	    updateServo(cmd['servo']);   
+//	    updateServo(cmd['servo']);
 //	  }
         } catch (e) {
           console.log(e);

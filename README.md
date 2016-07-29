@@ -51,9 +51,9 @@ sudo chmod 755 /home/pi/.config/lxsession/LXDE-pi/launch.sh
 ```
 
 <BR>
-##Servo Commands
+#Servo Commands
 
-###Individual Servos
+##Individual Servos
 
 **Add servo individually**
 ```
