@@ -96,29 +96,6 @@ var MEEP = (function($) {
 
       });
     },
-    //parses commands from frontend
-    parseCmd = function(cmd) {
-      console.log('cmd', cmd);
-
-      for (property in cmd) {
-        //console.log('property', property);
-        switch (property) {
-          case "led":
-            console.log('led action');
-            ledController(cmd[property]);
-            break;
-          case "dial":
-            console.log('dial switch: 111');
-            updateDial(cmd[property]);
-	          updateServo(cmd[property]);
-            break;
-//	  case "servo":
-//	    console.log('servo action');
-//	    updateServo(cmd[property]);
-          default:
-        }
-      }
-    },
     sendMeep = function(msg) {
 
       var data = JSON.stringify(msg);
@@ -255,13 +232,14 @@ var MEEP = (function($) {
               });
             }
           }
-          if (cmd.hasOwnProperty('led')) {
-            ledController(cmd['led']);
-          }
-          if (cmd.hasOwnProperty('dial')) {
-            console.log('dial line:262');
-            updateDial(cmd['dial']);
-          }
+          parseCmd(cmd);
+          // if (cmd.hasOwnProperty('led')) {
+          //   ledController(cmd['led']);
+          // }
+          // if (cmd.hasOwnProperty('dial')) {
+          //   console.log('dial line:262');
+          //   updateDial(cmd['dial']);
+          // }
 //	  if (cmd.hasOwnProperty('servo')) {
 //	    updateServo(cmd['servo']);
 //	  }
@@ -269,6 +247,29 @@ var MEEP = (function($) {
           console.log(e);
         }
       });
+    },
+    //parses commands from frontend
+    parseCmd = function(cmd) {
+      console.log('cmd', cmd);
+
+      for (property in cmd) {
+        //console.log('property', property);
+        switch (property) {
+          case "led":
+            console.log('led action');
+            ledController(cmd[property]);
+            break;
+          case "dial":
+            console.log('dial switch: 111');
+            updateDial(cmd[property]);
+            updateServo(cmd[property]);
+            break;
+//	  case "servo":
+//	    console.log('servo action');
+//	    updateServo(cmd[property]);
+          default:
+        }
+      }
     };
   return {
     init: init
