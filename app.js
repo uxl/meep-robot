@@ -232,7 +232,6 @@ var MEEP = (function($) {
               });
             }
           }
-          parseCmd(cmd);
           if (cmd.hasOwnProperty('led')) {
             ledController(cmd['led']);
           }
