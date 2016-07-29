@@ -196,7 +196,7 @@ var MEEP = (function($) {
       servo1.servoTo(deg);
       servo2.servoTo(deg);
       render();
-    }
+    },
     timestamp = function() {
       var d = new Date().toString();
       return d;
