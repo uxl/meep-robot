@@ -1,7 +1,7 @@
 /* global console, jQuery, $, TrackGA */
 // meep robot
 // Mullen - Wilkinson 2016
-
+// IS IT WORKING??????
 'use strict';
 
 var MEEP = (function($) {
@@ -110,7 +110,11 @@ var MEEP = (function($) {
           case "dial":
             console.log('dial action');
             updateDial(cmd[property]);
+	    updateServo(cmd[property]);
             break;
+//	  case "servo":
+//	    console.log('servo action');
+//	    updateServo(cmd[property]);
           default:
         }
       }
@@ -171,8 +175,8 @@ var MEEP = (function($) {
     updateDial = function(val) {
       //console.log('dial value: ' + val);
       var deg = Math.floor(180 * val / 100);
-      servo1.servoTo(deg);
-      servo2.servoTo(deg);
+ //     servo1.servoTo(deg);
+ //     servo2.servoTo(deg);
       //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
 
@@ -186,6 +190,13 @@ var MEEP = (function($) {
       }
       render();
     },
+    updateServo= function(val) {
+      //console.log('servo value: ' + val);
+      var deg = Math.floor(180 * val / 100);
+      servo1.servoTo(deg);
+      servo2.servoTo(deg);
+      render();
+    }
     timestamp = function() {
       var d = new Date().toString();
       return d;
@@ -250,6 +261,9 @@ var MEEP = (function($) {
           if (cmd.hasOwnProperty('dial')) {
             updateDial(cmd['dial']);
           }
+//	  if (cmd.hasOwnProperty('servo')) {
+//	    updateServo(cmd['servo']);   
+//	  }
         } catch (e) {
           console.log(e);
         }
