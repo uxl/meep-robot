@@ -191,7 +191,7 @@ var MEEP = (function($) {
       render();
     },
     updateServo= function(val) {
-      //console.log('servo value: ' + val);
+      console.log('servo value: ' + val);
       var deg = Math.floor(180 * val / 100);
       servo1.servoTo(deg);
    //   servo2.servoTo(deg);
