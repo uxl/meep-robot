@@ -238,7 +238,7 @@ var MEEP = (function($) {
           if (cmd.hasOwnProperty('dial')) {
             console.log('dial line:262');
             updateDial(cmd['dial']);
-            updateDial(cmd['servos']);
+            updateServo(cmd['servos']);
           }
 //	  if (cmd.hasOwnProperty('servo')) {
 //	    updateServo(cmd['servo']);
