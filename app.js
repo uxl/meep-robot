@@ -112,7 +112,6 @@ var MEEP = (function($) {
       for (var i = 0; i < len; i++) {
         pixels[i].color(colors[i]);
         //console.log(i + " " + colors[i]);
-
       }
       strip.show();
     },
@@ -167,9 +166,10 @@ var MEEP = (function($) {
       }
       render();
     },
-    updateServo= function(val) {
+    updateServo = function(val) {
       console.log('servo value: ' + val);
       var deg = Math.floor(180 * val / 100);
+      console.log('servo deg: ' + deg);
       servo1.servoTo(deg);
    //   servo2.servoTo(deg);
       render();
@@ -238,7 +238,7 @@ var MEEP = (function($) {
           if (cmd.hasOwnProperty('dial')) {
             console.log('dial line:262');
             updateDial(cmd['dial']);
-            updateServo(cmd['servos']);
+            updateServo(cmd['dial']);
           }
 //	  if (cmd.hasOwnProperty('servo')) {
 //	    updateServo(cmd['servo']);
