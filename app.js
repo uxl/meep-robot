@@ -241,7 +241,7 @@ var MEEP = (function($) {
             updateServo(cmd['dial']);
           }
       	  if (cmd.hasOwnProperty('servo')) {
-            console.log(cmd['servo'].length);
+            //console.log(cmd['servo'].length);
             for(var i = 0; i < cmd['servo'].length; i++){
               console.log('id: ' + cmd['servo'][i].id + ' degrees:' + cmd['servo'][i].deg);
               //updateServo(cmd['servo']);
