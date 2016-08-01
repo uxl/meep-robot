@@ -241,8 +241,12 @@ var MEEP = (function($) {
             updateServo(cmd['dial']);
           }
       	  if (cmd.hasOwnProperty('servo')) {
-      	    updateServo(cmd['servo']);
-            console.log('catchings servos');
+            console.log(cmd['servo'].length);
+            for(var i = 0; i < cmd['servo'].length; i++){
+              console.log(cmd['servo'][i].id);
+              console.log(cmd['servo'][i].deg);
+              //updateServo(cmd['servo']);
+            }
       	  }
         } catch (e) {
           console.log(e);
