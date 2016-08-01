@@ -31,6 +31,7 @@ var MEEP = (function($) {
     fps = 1,
     servo1 = null,
     servo2 = null,
+    servo3 = null,
     strip = null,
     pixels = [],
 
@@ -56,8 +57,11 @@ var MEEP = (function($) {
         servo1.servoInit(3, 0, 180);
   //      servo1.servoSweep();
 
- //       servo2 = new MeepServo();
-//        servo2.servoInit(8, 0, 180);
+       servo2 = new MeepServo();
+       servo2.servoInit(5, 0, 180);
+
+       servo3 = new MeepServo();
+       servo2.servoInit(11, 0, 180);
 //        servo2.servoSweep();
 
         //create a new neopixel strx  ip
@@ -170,7 +174,7 @@ var MEEP = (function($) {
       console.log('servo value: ' + val);
       var deg = Math.floor(180 * val / 100);
       console.log('servo deg: ' + deg);
-      servo1.servoTo(deg);
+      //servo.servoTo(deg);
    //   servo2.servoTo(deg);
       render();
     },
@@ -244,7 +248,7 @@ var MEEP = (function($) {
             //console.log(cmd['servo'].length);
             for(var i = 0; i < cmd['servo'].length; i++){
               console.log('id: ' + cmd['servo'][i].id + ' degrees:' + cmd['servo'][i].deg);
-              //updateServo(cmd['servo']);
+              updateServo(cmd['servo']);
             }
       	  }
         } catch (e) {
