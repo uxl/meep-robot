@@ -171,13 +171,8 @@ var MEEP = (function($) {
       render();
     },
     updateServo = function(id, deg) {
-      console.log('servo value: ' + id);
+      console.log('servo id: ' + id + ' | servo deg: ' + deg);
       servos[id].servoTo(deg);
-      // var deg = Math.floor(180 * val / 100);
-      console.log('servo deg: ' + deg);
-
-      //servo.servoTo(deg);
-   //   servo2.servoTo(deg);
       render();
     },
     timestamp = function() {
@@ -244,13 +239,12 @@ var MEEP = (function($) {
           if (cmd.hasOwnProperty('dial')) {
             console.log('dial line:262');
             updateDial(cmd['dial']);
-            updateServo(cmd['dial']);
           }
       	  if (cmd.hasOwnProperty('servo')) {
             //console.log(cmd['servo'].length);
             for(var i = 0; i < cmd['servo'].length; i++){
-              console.log('id: ' + cmd['servo'][i].id + ' degrees:' + cmd['servo'][i].deg);
-              updateServo(cmd['servo']);
+              // console.log('id: ' + cmd['servo'][i].id + ' degrees:' + cmd['servo'][i].deg);
+              updateServo(cmd['servo'][i].id, cmd['servo'][i].deg);
             }
       	  }
         } catch (e) {
