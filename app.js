@@ -243,7 +243,7 @@ var MEEP = (function($) {
       	  if (cmd.hasOwnProperty('servo')) {
             console.log(cmd['servo'].length);
             for(var i = 0; i < cmd['servo'].length; i++){
-              console.log('id: ' + cmd['servo'][i].id + ' degrees:' + console.log(cmd['servo'][i].deg););
+              console.log('id: ' + cmd['servo'][i].id + ' degrees:' + cmd['servo'][i].deg);
               //updateServo(cmd['servo']);
             }
       	  }
