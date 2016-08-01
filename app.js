@@ -240,9 +240,10 @@ var MEEP = (function($) {
             updateDial(cmd['dial']);
             updateServo(cmd['dial']);
           }
-//	  if (cmd.hasOwnProperty('servo')) {
-//	    updateServo(cmd['servo']);
-//	  }
+      	  if (cmd.hasOwnProperty('servo')) {
+      	    updateServo(cmd['servo']);
+            console.log('catchings servos');
+      	  }
         } catch (e) {
           console.log(e);
         }
