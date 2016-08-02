@@ -28,7 +28,7 @@ var MEEP = (function($) {
 
     colors = [],
     renderInt = null,
-    fps = 1,
+    fps = 6,
     servos = [],
     strip = null,
     pixels = [],
@@ -122,7 +122,7 @@ var MEEP = (function($) {
     startRender = function() {
       renderInt = setInterval(function() {
         render();
-      }, 100 / fps);
+      }, 1000 / fps);
     },
     updateStatus = function(state) {
       switch (state) {
@@ -171,9 +171,9 @@ var MEEP = (function($) {
       render();
     },
     updateServo = function(id, deg) {
-      console.log('servo id: ' + id + ' | servo deg: ' + deg);
+      //console.log('servo id: ' + id + ' | servo deg: ' + deg);
       servos[id].servoTo(deg);
-      render();
+      //render();
     },
     timestamp = function() {
       var d = new Date().toString();
