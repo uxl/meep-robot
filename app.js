@@ -244,7 +244,8 @@ var MEEP = (function($) {
             //node method of queuing commands
             process.nextTick(() => {
               console.log('cmd.hadOwnProperty servo');
-              for (var i = 0; i < cmd.servo.length; i++) {
+              var len = cmd.servo.length;
+              for (var i = 0; i < len; i++) {
                 updateServo(cmd.servo[i].id, cmd.servo[i].deg);
               }
             });
