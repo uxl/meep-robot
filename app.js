@@ -243,7 +243,7 @@ var MEEP = (function($) {
           if (cmd.hasOwnProperty('servo')) {
             //node method of queuing commands
             process.nextTick(() => {
-              console.log('cmd.hadOwnProperty servo');
+              // console.log('cmd.hadOwnProperty servo');
               var len = cmd.servo.length;
               for (var i = 0; i < len; i++) {
                 updateServo(cmd.servo[i].id, cmd.servo[i].deg);
