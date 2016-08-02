@@ -241,6 +241,7 @@ var MEEP = (function($) {
             updateDial(cmd['dial']);
           }
           if (cmd.hasOwnProperty('servo')) {
+            //node method of queuing commands
             process.nextTick(() => {
               console.log('cmd.hadOwnProperty servo');
               for (var i = 0; i < cmd.servo.length; i++) {
