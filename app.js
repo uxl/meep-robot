@@ -7,11 +7,11 @@
 var MEEP = (function($) {
   //vars
   var pixel = require("node-pixel"),
-   five = require("johnny-five"),
-   Raspi = require("raspi-io"),
-   hydna = require('hydna'),
-   MeepServo = require('./MeepServo'), //anynomous prototype
-   channel = null,
+    five = require("johnny-five"),
+    Raspi = require("raspi-io"),
+    hydna = require('hydna'),
+    MeepServo = require('./MeepServo'), //anynomous prototype
+    channel = null,
 
     //ledR = null,
     //ledG = null,
@@ -55,14 +55,14 @@ var MEEP = (function($) {
 
         servos[1] = new MeepServo();
         servos[1].servoInit(3, 0, 180);
-  //      servo1.servoSweep();
+        //      servo1.servoSweep();
 
-       servos[2] = new MeepServo();
-       servos[2].servoInit(5, 0, 180);
+        servos[2] = new MeepServo();
+        servos[2].servoInit(5, 0, 180);
 
-       servos[3] = new MeepServo();
-       servos[3].servoInit(11, 0, 180);
-//        servo2.servoSweep();
+        servos[3] = new MeepServo();
+        servos[3].servoInit(11, 0, 180);
+        //        servo2.servoSweep();
 
         //create a new neopixel strx  ip
         strip = new pixel.Strip({
@@ -119,10 +119,10 @@ var MEEP = (function($) {
       }
       strip.show();
     },
-    startRender = function(){
-      renderInt = setInterval(function(){
+    startRender = function() {
+      renderInt = setInterval(function() {
         render();
-      },100/fps);
+      }, 100 / fps);
     },
     updateStatus = function(state) {
       switch (state) {
@@ -155,8 +155,8 @@ var MEEP = (function($) {
     updateDial = function(val) {
       //console.log('dial value: ' + val);
       var deg = Math.floor(180 * val / 100);
- //     servo1.servoTo(deg);
- //     servo2.servoTo(deg);
+      //     servo1.servoTo(deg);
+      //     servo2.servoTo(deg);
       //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
 
@@ -240,13 +240,14 @@ var MEEP = (function($) {
             console.log('dial line:262');
             updateDial(cmd['dial']);
           }
-      	  if (cmd.hasOwnProperty('servo')) {
-            //console.log(cmd['servo'].length);
-            for(var i = 0; i < cmd['servo'].length; i++){
-              // console.log('id: ' + cmd['servo'][i].id + ' degrees:' + cmd['servo'][i].deg);
-              updateServo(cmd['servo'][i].id, cmd['servo'][i].deg);
-            }
-      	  }
+          if (cmd.hasOwnProperty('servo')) {
+            process.nextTick(() => {
+              console.log('cmd.hadOwnProperty servo');
+              for (var i = 0; i < cmd.servo.length; i++) {
+                updateServo(cmd.servo[i].id, cmd.servo[i].deg);
+              }
+            });
+          }
         } catch (e) {
           console.log(e);
         }
