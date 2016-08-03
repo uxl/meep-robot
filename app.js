@@ -51,7 +51,8 @@ var MEEP = (function($) {
       board.on("ready", function() {
 
         //sends pin number and range of degrees
-        servos[0] = null;
+        servos[0] = new MeepServo(); //base
+        servos[0].servoInit(10, 0, 180);
 
         servos[1] = new MeepServo();
         servos[1].servoInit(3, 0, 180);
@@ -62,6 +63,12 @@ var MEEP = (function($) {
 
         servos[3] = new MeepServo();
         servos[3].servoInit(11, 0, 180);
+
+        servos[4] = new MeepServo();
+        servos[4].servoInit(9, 0, 180);
+
+        servos[5] = new MeepServo();
+        servos[5].servoInit(6, 0, 180);
         //        servo2.servoSweep();
 
         //create a new neopixel strx  ip
@@ -69,15 +76,15 @@ var MEEP = (function($) {
           board: this,
           controller: "FIRMATA",
           strips: [{
-              pin: 6, //try 9
+              pin: 7, //try 9
               length: 1
             }, // status
             {
-              pin: 9, // try
+              pin: 12, // try
               length: 12
             }, // dial
             {
-              pin: 10,
+              pin: 13,
               length: 8
             }, // bar
           ],
