@@ -52,23 +52,23 @@ var MEEP = (function($) {
 
         //sends pin number and range of degrees
         servos[0] = new MeepServo(); //base
-        servos[0].servoInit(10, 0, 180);
+        servos[0].servoInit(3, 0, 180);
 
         servos[1] = new MeepServo();
-        servos[1].servoInit(3, 0, 180);
+        servos[1].servoInit(5, 0, 180);
         //      servo1.servoSweep();
 
         servos[2] = new MeepServo();
-        servos[2].servoInit(5, 0, 180);
+        servos[2].servoInit(6, 0, 180);
 
         servos[3] = new MeepServo();
-        servos[3].servoInit(11, 0, 180);
+        servos[3].servoInit(9, 0, 180);
 
         servos[4] = new MeepServo();
-        servos[4].servoInit(9, 0, 180);
+        servos[4].servoInit(10, 0, 180);
 
         servos[5] = new MeepServo();
-        servos[5].servoInit(6, 0, 180);
+        servos[5].servoInit(11, 0, 180);
         //        servo2.servoSweep();
 
         //create a new neopixel strx  ip
