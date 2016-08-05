@@ -12,7 +12,7 @@ MeepServo.prototype.servoInit = function(pin, min, max) {
 };
 
 MeepServo.prototype.servoTo = function(val) {
-  console.log('servo to: ' + val );
+  // console.log('servo to: ' + val );
   this.servo.stop();
   this.servo.to(val);
 };

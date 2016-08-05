@@ -10,7 +10,7 @@ var MEEP = (function($) {
     five = require("johnny-five"),
     Raspi = require("raspi-io"),
     hydna = require('hydna'),
-    MeepServo = require('./MeepServo'), //anynomous prototype
+    MeepServo = require('./MeepServo'), //node module
     channel = null,
 
     //ledR = null,
@@ -178,7 +178,7 @@ var MEEP = (function($) {
       render();
     },
     updateServo = function(id, deg) {
-      //console.log('servo id: ' + id + ' | servo deg: ' + deg);
+      console.log('id: ' + id + ' | deg: ' + deg);
       servos[id].servoTo(deg);
       //render();
     },
