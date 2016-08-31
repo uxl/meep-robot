@@ -205,7 +205,7 @@ var MEEP = (function($) {
         });
         updateStatus(true);
 
-        startRender();
+        //startRender();
         render();
         // read/write connection is ready to use
       });
