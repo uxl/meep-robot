@@ -76,15 +76,15 @@ var MEEP = (function($) {
           board: this,
           controller: "FIRMATA",
           strips: [{
-              pin: 7, //try 9
+              pin: 12, //try 9
               length: 1
             }, // status
             {
-              pin: 12, // try
+              pin: 13, // try
               length: 12
             }, // dial
             {
-              pin: 13,
+              pin: 2,
               length: 8
             }, // bar
           ],
@@ -110,8 +110,9 @@ var MEEP = (function($) {
     sendMeep = function(msg) {
 
       var data = JSON.stringify(msg);
+
       console.log('sendMeep: ' + data);
-      console.log('sendMeep msg: ' + msg['data']);
+      console.log('sendMeep msg: ' + msg.data);
       try {
         channel.write(data);
       } catch (e) {
@@ -198,13 +199,13 @@ var MEEP = (function($) {
           //console.log('-------------');
           //may use parse to subtract times
           reconnect = false;
-        };
+        }
         sendMeep({
           "status": "bot-syn"
         });
         updateStatus(true);
 
-        //startRender();
+        startRender();
         render();
         // read/write connection is ready to use
       });
@@ -234,18 +235,18 @@ var MEEP = (function($) {
 
           //console.log(timestamp());
           if (cmd.hasOwnProperty('status')) {
-            if (cmd['status'] == "client-syn") {
+            if (cmd.status == "client-syn") {
               sendMeep({
                 "status": "bot-ack"
               });
             }
           }
           if (cmd.hasOwnProperty('led')) {
-            ledController(cmd['led']);
+            ledController(cmd.led);
           }
           if (cmd.hasOwnProperty('dial')) {
             console.log('dial line:262');
-            updateDial(cmd['dial']);
+            updateDial(cmd.dial);
           }
           if (cmd.hasOwnProperty('servo')) {
             //node method of queuing commands
