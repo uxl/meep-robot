@@ -1,16 +1,21 @@
-/* global console, jQuery, $, TrackGA */
+/*jshint strict:false */
+/*jslint node: true */
+/* global console, jQuery, $, TrackGA, setTimeout */
+
 // meep robot
-// Mullen - Wilkinson 2016
-// hmmmm
+
 'use strict';
 
 var MEEP = (function($) {
   //vars
-  var pixel = require("node-pixel"),
-    five = require("johnny-five"),
-    Raspi = require("raspi-io"),
-    hydna = require('hydna'),
-    MeepServo = require('./MeepServo'), //node module
+  var pixel = require("node-pixel"), //addressble led library
+    five = require("johnny-five"), //robotics library
+    Raspi = require("raspi-io"), //allows us to use gpio on pi
+    hydna = require('hydna'), // cloud websocket provider
+    //prompt = require('prompt'), // allows command line user input
+
+    //MeepServo = require('./MeepServo'), //node module
+
     channel = null,
 
     //ledR = null,
@@ -28,7 +33,7 @@ var MEEP = (function($) {
 
     colors = [],
     renderInt = null,
-    fps = 6,
+    fps = 30,
     servos = [],
     strip = null,
     pixels = [],
@@ -38,7 +43,6 @@ var MEEP = (function($) {
 
     init = function() {
       console.log(MEEP.init);
-
 
       //initialize the five board
       //looks for arduino connected
@@ -87,6 +91,10 @@ var MEEP = (function($) {
         });
 
       });
+      board.on("exit", function() {
+        //connection with board lost
+
+      });
     },
     sendMeep = function(msg) {
 
@@ -120,8 +128,7 @@ var MEEP = (function($) {
       var len = servos.length;
       for(var s=0; s < len; s++){
         //may need to check that value has changed before sending command
-        //servos[s].to[servos[s].deg];
-
+        servos[s].to(servoArr[s].deg);
       }
     },
     updateStatus = function(state) {
@@ -170,57 +177,55 @@ var MEEP = (function($) {
     },
 
     updateServo = function(id, deg) {
-      // console.log('id: ' + id + ' | deg: ' + deg);
-      for(var i=0; i < servos.length; i++)
-        {
-        if(servos[i].id==id)
-          {
-            servoArr[i].deg = deg;
-          }
-      }
-      console.log(servoArr);
+      console.log('id: ' + id + ' | deg: ' + deg);
+      //console.log(servoArr);
+      servoArr[id].deg = deg;
+
+      servos[id].to(deg);
     },
     initServos = function(){
-      //sends pin number and range of degrees
-      for(var p=0; p < servos.length; p++){
-        servoArr[p] = {id:p, deg:90};
-      }
+      console.log('initServos');
 
-      servos[0] = new MeepServo({
+      //sets pin number and range of degrees
+      servos[0] = new five.Servo({
         pin: 3,
         range: [0, 180],
         startAt: 90
       }); //base
 
-      servos[1] = new MeepServo({
+      servos[1] = new five.Servo({
         pin: 5,
         range: [0, 180],
-        startAt: 90
+        startAt: 100
       }); //segment 1
 
-      servos[2] = new MeepServo({
+      servos[2] = new five.Servo({
         pin: 6,
         range: [0, 180],
-        startAt: 90
+        startAt: 22
       }); //segment 1
 
-      servos[3] = new MeepServo({
+      servos[3] = new five.Servo({
         pin: 9,
         range: [0, 180],
-        startAt: 90
+        startAt: 112
       }); //segment 1
 
-      servos[4] = new MeepServo({
+      servos[4] = new five.Servo({
         pin: 10,
         range: [0, 180],
         startAt: 90
       }); //segment 1
 
-      servos[5] = new MeepServo({
+      servos[5] = new five.Servo({
         pin: 11,
         range: [0, 180],
         startAt: 90
       }); //segment 1
+      //fills servoArr with initial values
+      for(var p=0; p < servos.length; p++){
+        servoArr[p] = {id:p, deg:servos[p].startAt};
+      }
     },
     timestamp = function() {
       var d = new Date().toString();
@@ -244,7 +249,7 @@ var MEEP = (function($) {
         });
         updateStatus(true);
 
-        //startServoRender();
+        startServoRender();
         lightsRender();
         // read/write connection is ready to use
       });
@@ -284,7 +289,6 @@ var MEEP = (function($) {
             ledController(cmd.led);
           }
           if (cmd.hasOwnProperty('dial')) {
-            console.log('dial line:262');
             updateDial(cmd.dial);
           }
           if (cmd.hasOwnProperty('servo')) {

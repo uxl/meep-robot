@@ -22,6 +22,7 @@
     "johnny-five": "^0.9.56",
     "jquery": "^2.2.1",
     "node-pixel": "^0.6.1",
-    "raspi-io": "^5.3.0"
+    "prompt": "^1.0.0",
+    "raspi-io": "*"
   }
 }
