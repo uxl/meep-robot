@@ -120,7 +120,8 @@ var MEEP = (function($) {
       var len = servos.length;
       for(var s=0; s < len; s++){
         //may need to check that value has changed before sending command
-        servos[s].to[servos[s].deg];
+        //servos[s].to[servos[s].deg];
+
       }
     },
     updateStatus = function(state) {
@@ -174,9 +175,10 @@ var MEEP = (function($) {
         {
         if(servos[i].id==id)
           {
-          servos[i].deg = deg;
+            servoArr[i].deg = deg;
           }
       }
+      console.log(servoArr);
     },
     initServos = function(){
       //sends pin number and range of degrees
@@ -242,7 +244,7 @@ var MEEP = (function($) {
         });
         updateStatus(true);
 
-        startServoRender();
+        //startServoRender();
         lightsRender();
         // read/write connection is ready to use
       });
