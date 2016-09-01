@@ -19,8 +19,8 @@ var MEEP = (function($) {
     board = null,
     reconnect = false,
     startTime = null, // time reconnect
-
     stripArr = [status, dial, bar],
+    servoArr = [],
 
     status = [0],
     dial = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -50,26 +50,7 @@ var MEEP = (function($) {
       //Runs when board is ready
       board.on("ready", function() {
 
-        //sends pin number and range of degrees
-        servos[0] = new MeepServo(); //base
-        servos[0].servoInit(3, 0, 180);
-
-        servos[1] = new MeepServo();
-        servos[1].servoInit(5, 0, 180);
-        //      servo1.servoSweep();
-
-        servos[2] = new MeepServo();
-        servos[2].servoInit(6, 0, 180);
-
-        servos[3] = new MeepServo();
-        servos[3].servoInit(9, 0, 180);
-
-        servos[4] = new MeepServo();
-        servos[4].servoInit(10, 0, 180);
-
-        servos[5] = new MeepServo();
-        servos[5].servoInit(11, 0, 180);
-        //        servo2.servoSweep();
+        initServos();
 
         //create a new neopixel strx  ip
         strip = new pixel.Strip({
@@ -119,7 +100,7 @@ var MEEP = (function($) {
         console.log(e);
       }
     },
-    render = function() {
+    lightsRender = function() {
       var len = pixels.length;
       for (var i = 0; i < len; i++) {
         pixels[i].color(colors[i]);
@@ -127,10 +108,20 @@ var MEEP = (function($) {
       }
       strip.show();
     },
-    startRender = function() {
+    startServoRender = function() {
       renderInt = setInterval(function() {
-        render();
+        renderServos();
       }, 1000 / fps);
+    },
+    stopServoRender = function(){
+      clearInterval(renderInt);
+    },
+    renderServos = function(){
+      var len = servos.length;
+      for(var s=0; s < len; s++){
+        //may need to check that value has changed before sending command
+        servos[s].to[servos[s].deg];
+      }
     },
     updateStatus = function(state) {
       switch (state) {
@@ -143,7 +134,7 @@ var MEEP = (function($) {
           colors[0] = "green";
           break;
       }
-      render();
+      lightsRender();
     },
     ledController = function(state) {
       switch (state) {
@@ -153,18 +144,16 @@ var MEEP = (function($) {
           }
           break;
         case true:
-          for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "blue";
+          for (var j = 0; j < bar.length; j++) {
+            colors[bar[j]] = "blue";
           }
           break;
       }
-      render();
+      lightsRender();
     },
     updateDial = function(val) {
       //console.log('dial value: ' + val);
       var deg = Math.floor(180 * val / 100);
-      //     servo1.servoTo(deg);
-      //     servo2.servoTo(deg);
       //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
 
@@ -176,12 +165,60 @@ var MEEP = (function($) {
           colors[dial[i]] = "black";
         }
       }
-      render();
+      lightsRender();
     },
+
     updateServo = function(id, deg) {
-      console.log('id: ' + id + ' | deg: ' + deg);
-      servos[id].servoTo(deg);
-      //render();
+      // console.log('id: ' + id + ' | deg: ' + deg);
+      for(var i=0; i < servos.length; i++)
+        {
+        if(servos[i].id==id)
+          {
+          servos[i].deg = deg;
+          }
+      }
+    },
+    initServos = function(){
+      //sends pin number and range of degrees
+      for(var p=0; p < servos.length; p++){
+        servoArr[p] = {id:p, deg:90};
+      }
+
+      servos[0] = new MeepServo({
+        pin: 3,
+        range: [0, 180],
+        startAt: 90
+      }); //base
+
+      servos[1] = new MeepServo({
+        pin: 5,
+        range: [0, 180],
+        startAt: 90
+      }); //segment 1
+
+      servos[2] = new MeepServo({
+        pin: 6,
+        range: [0, 180],
+        startAt: 90
+      }); //segment 1
+
+      servos[3] = new MeepServo({
+        pin: 9,
+        range: [0, 180],
+        startAt: 90
+      }); //segment 1
+
+      servos[4] = new MeepServo({
+        pin: 10,
+        range: [0, 180],
+        startAt: 90
+      }); //segment 1
+
+      servos[5] = new MeepServo({
+        pin: 11,
+        range: [0, 180],
+        startAt: 90
+      }); //segment 1
     },
     timestamp = function() {
       var d = new Date().toString();
@@ -205,8 +242,8 @@ var MEEP = (function($) {
         });
         updateStatus(true);
 
-        //startRender();
-        render();
+        startServoRender();
+        lightsRender();
         // read/write connection is ready to use
       });
       channel.on('error', function(err) {
