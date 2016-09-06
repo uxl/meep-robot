@@ -144,7 +144,7 @@ var MEEP = (function($) {
       }
       lightsRender();
     },
-    ledController = function(state) {
+    ledstripController = function(state) {
       switch (state) {
         case false:
           for (var i = 0; i < bar.length; i++) {
@@ -285,8 +285,8 @@ var MEEP = (function($) {
               });
             }
           }
-          if (cmd.hasOwnProperty('led')) {
-            ledController(cmd.led);
+          if (cmd.hasOwnProperty('strip')) {
+            ledstripController(cmd.led);
           }
           if (cmd.hasOwnProperty('dial')) {
             updateDial(cmd.dial);
