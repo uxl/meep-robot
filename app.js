@@ -153,9 +153,9 @@ var MEEP = (function($) {
       //loop through and update colors array to red for on and black for off
       for (var i = 0; i < bar.length; i++) {
         if (i < litnum) {
-          colors[dial[i]] = "blue";
+          colors[bar[i]] = "blue";
         } else {
-          colors[dial[i]] = "black";
+          colors[bar[i]] = "black";
         }
       }
       lightsRender();
