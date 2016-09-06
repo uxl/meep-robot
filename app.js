@@ -65,11 +65,11 @@ var MEEP = (function($) {
               length: 1
             }, // status
             {
-              pin: 13, // try
+              pin: 2, // try
               length: 12
             }, // dial
             {
-              pin: 2,
+              pin: 13,
               length: 8
             }, // bar
           ],
