@@ -144,23 +144,24 @@ var MEEP = (function($) {
       }
       lightsRender();
     },
-    ledstripController = function(state) {
-      switch (state) {
-        case false:
-          for (var i = 0; i < bar.length; i++) {
-            colors[bar[i]] = "black";
-          }
-          break;
-        case true:
-          for (var j = 0; j < bar.length; j++) {
-            colors[bar[j]] = "blue";
-          }
-          break;
+    updateBar = function(val) {
+      console.log('bar value: ' + val);
+      var deg = Math.floor(180 * val / 100);
+      //proportion how many lights need to be turned on
+      var litnum = bar.length * val / 100; // get how many leds are lit baised on percent
+
+      //loop through and update colors array to red for on and black for off
+      for (var i = 0; i < bar.length; i++) {
+        if (i < litnum) {
+          colors[dial[i]] = "blue";
+        } else {
+          colors[dial[i]] = "black";
+        }
       }
       lightsRender();
     },
     updateDial = function(val) {
-      //console.log('dial value: ' + val);
+      console.log('dial value: ' + val);
       var deg = Math.floor(180 * val / 100);
       //proportion how many lights need to be turned on
       var litnum = dial.length * val / 100; // get how many leds are lit baised on percent
@@ -285,8 +286,8 @@ var MEEP = (function($) {
               });
             }
           }
-          if (cmd.hasOwnProperty('strip')) {
-            ledstripController(cmd.led);
+          if (cmd.hasOwnProperty('bar')) {
+            updateBar(cmd.bar);
           }
           if (cmd.hasOwnProperty('dial')) {
             updateDial(cmd.dial);
