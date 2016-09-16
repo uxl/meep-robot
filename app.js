@@ -191,37 +191,37 @@ var MEEP = (function($) {
       servos[0] = new five.Servo({
         pin: 3,
         range: [0, 180],
-        startAt: 90
+        startAt: 88
       }); //base
 
       servos[1] = new five.Servo({
-        pin: 5,
+        pin: 4,
         range: [0, 180],
-        startAt: 100
+        startAt: 144
       }); //segment 1
 
       servos[2] = new five.Servo({
-        pin: 6,
+        pin: 5,
         range: [0, 180],
-        startAt: 22
+        startAt: 127
       }); //segment 1
 
       servos[3] = new five.Servo({
-        pin: 9,
+        pin: 6,
         range: [0, 180],
-        startAt: 112
+        startAt: 91
       }); //segment 1
 
       servos[4] = new five.Servo({
-        pin: 10,
+        pin: 7,
         range: [0, 180],
-        startAt: 90
+        startAt: 91
       }); //segment 1
 
       servos[5] = new five.Servo({
-        pin: 11,
+        pin: 8,
         range: [0, 180],
-        startAt: 90
+        startAt: 175
       }); //segment 1
       //fills servoArr with initial values
       for(var p=0; p < servos.length; p++){
