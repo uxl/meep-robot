@@ -1,5 +1,5 @@
-# meep
-raspberry pi experiment with pusher and johnny-five
+# meep robot
+raspberry pi experiment with hydna and johnny-five
 
 <BR>
 
@@ -42,10 +42,67 @@ copy this into the body of launch.sh:
 # restart meep
 sudo node /home/pi/app/meep-robot/meep.js
 
- exit 0 
+ exit 0
  ```
 
 set permissions:
 ```sh
 sudo chmod 755 /home/pi/.config/lxsession/LXDE-pi/launch.sh
+```
+
+<BR>
+#Servo Commands
+
+##Individual Servos
+
+**Add servo individually**
+```
+var myServo = new MeepServo();
+myServo.servoInit(<pin>, <min-range>, <max-range>);
+```
+
+**Move servo individually**
+```
+myServo.servoTo(<degrees>);
+```
+
+**Sweep servo individually**
+```
+myServo.servoSweep();
+```
+
+**Stop servo individually**
+```
+myServo.servoStop();
+```
+<BR>
+##Servo Groups
+**Add servo to group**
+```
+var myServos = new MeepServos();
+myServos.servosAdd(<pin>, <min-range>, <max-range>);
+```
+
+**Move servos in group**
+```
+myServos.servosTo(<degrees>);
+```
+
+**Sweep servos in group**
+```
+myServos.servosSweep();
+```
+
+**Stop servos in group**
+```
+myServos.servosStop();
+```
+
+
+<BR><BR>
+
+startup?
+```
+touch /home/pi/app.js
+su pi -c 'node /home/pi/app.js < /dev/null &'
 ```
