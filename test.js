@@ -1,6 +1,5 @@
 /* global console, jQuery, $, TrackGA */
 // meep robot
-// Mullen - Wilkinson 2016
 
 'use strict';
 
